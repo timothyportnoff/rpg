@@ -42,21 +42,30 @@ void titleSplash() {
 	sleep(1);
 }
 
+/*
 string healthBar(int userHealth) {
-	if (userHealth > 0 && userHealth < 20) return "🤍";
-	else if (userHealth >= 20 && userHealth < 30) return "🤍🤍";
-	else if (userHealth >= 30 && userHealth < 40) return "🤍🤍🤍";
-	else if (userHealth >= 40 && userHealth < 50) return "🤍🤍🤍🤍";
-	else if (userHealth >= 50 && userHealth < 60) return "🤍🤍🤍🤍🤍";
-	else if (userHealth >= 60 && userHealth < 70) return "🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 70 && userHealth < 80) return "🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 80 && userHealth < 90) return "🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 90 && userHealth < 100) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 100 && userHealth < 110) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 110 && userHealth < 120) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 120 && userHealth < 130) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 130 && userHealth < 140) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 140 && userHealth < 150) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	for (int i = 20; i < 200; i+20) {
+		if userHealth < i+
+
+*/
+
+
+
+string healthBar(int userHealth) {
+	if (userHealth < 20) return "🤍";
+	else if (userHealth < 30) return "🤍🤍";
+	else if (userHealth < 40) return "🤍🤍🤍";
+	else if (userHealth < 50) return "🤍🤍🤍🤍";
+	else if (userHealth < 60) return "🤍🤍🤍🤍🤍";
+	else if (userHealth < 70) return "🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 80) return "🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 90) return "🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 100) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 110) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 120) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 130) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 140) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 150) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth >= 150 && userHealth < 160) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth >= 160 && userHealth < 170) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth >= 170 && userHealth < 180) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
