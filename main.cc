@@ -1,6 +1,3 @@
-//URL to cover art and music:
-//	https://youtu.be/xG2AqfxA2wo
-
 //Sorry about the screen flickering. I couldn't figure out how to rewrite a single line on the map.
 //Also, if you move a block into a corner, you're screwed.
 //Don't forget to press 'f'
