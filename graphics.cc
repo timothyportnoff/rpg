@@ -13,13 +13,13 @@ void print_ending(int ending) {
 		std::cout << "ERROR. TERMINATING GAME" << std::endl;
 	}
 	else if (ending == 0) {
-		system("figlet -f slant 'Dead' | lolcat");// << std::cout << endl;
+		system("figlet -f slant 'Dead' | lolcat");
 	}
 	else if (ending == 1) {
-		system("figlet -f slant 'You win' | lolcat");// << std::cout << endl;
+		system("figlet -f slant 'You win' | lolcat");
 	}
 	else {
-		system("figlet -f slant 'NO ENDING HERE' | lolcat");// << std::cout << endl;
+		system("figlet -f slant 'NO ENDING HERE' | lolcat");
 	}
 	exit(1);
 }

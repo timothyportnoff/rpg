@@ -652,5 +652,4 @@ bool checkTile(Point* current_position, int nextx, int nexty) { //
 		return 1;
 	}
 	else return 1;
-	return 1;
 }

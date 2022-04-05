@@ -14,8 +14,73 @@
 #include "tileset.cc"
 #include "graphics.cc"
 #include "combat.cc"
+#include "point.cc"
 // TODO: Probably a bad idea
 using namespace std;
+int x = 62;
+int y = 5;
+
+Point* position = new Point {62, 5};
+void get_key() {
+	int dir = quick_read();
+	if (dir == 119 || dir == UP_ARROW || dir == 'k') {
+		if (checkTile(position, x, y - 1)) {
+			position->y--;
+			drawMap(position);
+		}
+	}
+	if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
+		if (checkTile(position, x - 1, y)) {
+			position->x--;
+			drawMap(position);
+		}
+	}
+	if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
+		if (checkTile(position, x, y + 1)) {
+			position->y++;
+			drawMap(position);
+		}
+	}
+	if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
+		if (checkTile(position, x + 1, y)) {
+			position->x++;
+			drawMap(position);
+		}
+	}
+	if (dir == 'f') {
+		movecursor(10, 2 * map.at(0).size());
+		cout << "You have paid respects.";
+		movecursor(11, 2 * map.at(0).size());
+		cout << "Thank you for paying respects.";
+	}
+	if (dir == ESC) {
+		system("clear");
+		exit(1);
+	}
+}
+
+
+void draw_inventory() {
+	movecursor(j, 2 * map.at(0).size());
+	cout << "X: " << x << "     Y: " << y;
+	j += 2;
+	if (numKeys > 0) {
+		movecursor(j, 2 * map.at(0).size());
+		cout << "🔑 - Keys: " << numKeys << endl;
+		j++;
+	}
+	if (numPots > 0) {
+		movecursor(j, 2 * map.at(0).size());
+		cout << "🧂 - Potions: " << numPots << endl;
+		j++;
+	}
+	if (numCheese > 0) {
+		movecursor(j, 2 * map.at(0).size());
+		cout << "🧀 - Cheese Wheels: " << numCheese;
+		j++;
+	}
+	j += 2;
+}
 
 int main() {
 	print_title("RPG - 41");
@@ -23,14 +88,10 @@ int main() {
 	show_cursor(false);
 	//set_alternate_window(true);
 	srand(time(0));
-	int x = 62;
-	int y = 5;
 
-	drawMap(x, y);
-
+	drawMap(position);
 	while (true) {
 		for (size_t row = 0; row < map.size(); row++) {
-
 			char puzzle1 = '1';
 			char puzzle2 = '2';
 			char puzzle3 = '3';
@@ -62,71 +123,10 @@ int main() {
 			if (found6 != string::npos) {
 				solved6 = 1;
 			}
-
 		}
-
-		j = 2;
-		movecursor(j, 2 * map.at(0).size());
-		cout << "X: " << x << "     Y: " << y;
-		j += 2;
-
-		if (numKeys > 0) {
-			movecursor(j, 2 * map.at(0).size());
-			cout << "🔑 - Keys: " << numKeys << endl;
-			j++;
-		}
-		if (numPots > 0) {
-			movecursor(j, 2 * map.at(0).size());
-			cout << "🧂 - Potions: " << numPots << endl;
-			j++;
-		}
-		if (numCheese > 0) {
-			movecursor(j, 2 * map.at(0).size());
-			cout << "🧀 - Cheese Wheels: " << numCheese;
-			j++;
-		}
-
-		j += 2;
-
-		int dir = quick_read();
-
-		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
-			if (checkTile(x, y, x, y - 1)) {
-				y --;
-				drawMap(x, y);
-			}
-		}
-		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
-			if (checkTile(x, y, x - 1, y)) {
-				x --;
-				drawMap(x, y);
-			}
-		}
-		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
-			if (checkTile(x, y, x, y + 1)) {
-				y ++;
-				drawMap(x, y);
-			}
-		}
-		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
-			if (checkTile(x, y, x + 1, y)) {
-				x ++;
-				drawMap(x, y);
-			}
-		}
-		//if (dir == 112) { //FIXME Initiates WIP combat game
-		//	combatGame(numCheese, numPots);
-		//}
-		if (dir == 'f') {
-			movecursor(10, 2 * map.at(0).size());
-			cout << "You have paid respects.";
-			movecursor(11, 2 * map.at(0).size());
-			cout << "Thank you for paying respects.";
-		}
-		if (dir == ESC) {
-			system("clear");
-			exit(1);
-		}
+		//j = 2;
+		draw_inventory();
+		get_key();
 	}
 }
 
