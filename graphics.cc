@@ -1,4 +1,4 @@
-void title(string title) {
+void print_title(string title) {
 	system("clear");
 	system("figlet -f slant 'Welcome' | lolcat");
 	sleep(1);
