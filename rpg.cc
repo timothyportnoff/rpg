@@ -1,55 +1,37 @@
 //Sorry about the screen flickering. I couldn't figure out how to rewrite a single line on the map.
 //Also, if you move a block into a corner, you're screwed.
-
 #include <iostream>
 #include <ostream>
 #include <fstream>
 #include <cmath>
 #include <string>
-#include "/public/colors.h"
-#include "/public/read.h"
-#include "tileset.cc"
 #include <vector>
 #include <unistd.h>
 #include <algorithm>
-
+#include "/public/colors.h"
+#include "/public/read.h"
+// My headers
+#include "tileset.cc"
+#include "graphics.cc"
+// TODO: Probably a bad idea
 using namespace std;
-
 
 void win(int numCheese) {
 	system("clear");
-	system("figlet -f slant 'A winner is you!!!' | lolcat");
-	cout << endl;
 	cout << "You collected " << numCheese << " cheese wheels." << endl;
 	exit(1);
 }
-
 void lose(int numCheese) {
 	system("clear");
-	system("figlet -f slant 'Sorry... you lost.' | lolcat");
-	cout << endl;
 	cout << "You collected " << numCheese << " cheese wheels." << endl;
 	exit(1);
 }
-void titleSplash() {
-	system("clear");
-	system("figlet -f slant 'Welcome' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\tTo' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\t\tHell' | lolcat");
-	sleep(1);
-}
-
 /*
-string healthBar(int userHealth) {
-	for (int i = 20; i < 200; i+20) {
-		if userHealth < i+
+   string healthBar(int userHealth) {
+   for (int i = 20; i < 200; i+20) {
+   if userHealth < i+
 
 */
-
-
-
 string healthBar(int userHealth) {
 	if (userHealth < 20) return "🤍";
 	else if (userHealth < 30) return "🤍🤍";
@@ -134,7 +116,7 @@ void combatGame(int numCheese, int numPots) {
 
 
 int main() {
-	titleSplash();
+	title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
 	//set_alternate_window(true);
