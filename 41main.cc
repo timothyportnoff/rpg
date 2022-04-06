@@ -1,7 +1,5 @@
 //Put your name(s) here:
 //What bullet points did you do:
-//Delete this next line to let the code compile
-//#error Delete This!
 #include "map.h"
 #include "class.h"
 #include <unistd.h>

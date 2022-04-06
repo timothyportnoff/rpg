@@ -16,7 +16,6 @@ int numCheese = 0;
 unsigned int i = 0;
 unsigned int j = 0;
 
-
 vector<string> map = {
 	"......................................................................",
 	"......................................................................",
@@ -652,5 +651,4 @@ bool checkTile(Point* current_position, int nextx, int nexty) { //
 		return 1;
 	}
 	else return 1;
-	return 1;
 }
