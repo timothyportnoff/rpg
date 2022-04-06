@@ -41,15 +41,38 @@ void titleSplash() {
 	sleep(1);
 }
 
-/*
+
 string healthBar(int userHealth) {
-	for (int i = 20; i < 200; i+20) {
-		if userHealth < i+
+	int healthCount = 0;
+	string healthBarline = "";
+	for (int i = 20; i < 200; i+20) { 
+		if (userHealth >= i) healthCount++; 
+		else break;
+	}
+	for (int j = 0, j <= healthCount; j++){
+		healthBarline.push_back("🤍");
+		return healthBarline;
+	}
+}
 
-*/
+string shieldBar (int heroShield) {
+	int shieldCount = 0;
+	string shieldLine = "";
+	for (int i = 10; i < 50; i+10) {
+		if (heroShield >= i) shieldLine++;
+		else break;
+	}
+	for (int j = 0, j <= shieldCount; j++){
+    	healthBarline.push_back("⛨");
+    	return healthBarline;
+	}
+}
 
 
 
+
+
+/* Delete if code above works
 string healthBar(int userHealth) {
 	if (userHealth < 20) return "🤍";
 	else if (userHealth < 30) return "🤍🤍";
@@ -65,14 +88,15 @@ string healthBar(int userHealth) {
 	else if (userHealth < 130) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth < 140) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth < 150) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 150 && userHealth < 160) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 160 && userHealth < 170) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 170 && userHealth < 180) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 180 && userHealth < 190) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
-	else if (userHealth >= 190 && userHealth < 200) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 160) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 170) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 180) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 190) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
+	else if (userHealth < 200) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth == 200) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍";
 	else if (userHealth > 200) return "🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍🤍+";
 	return "ERROR";
+	*/
 }
 void combatGameAttack(int &bossHealth) {
 	int attackDamage = rand() % 20 + 20;
