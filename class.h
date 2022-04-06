@@ -39,7 +39,6 @@ class Monster : public Actor {
 class Hero : public Actor {
 	private:
 		string hero_type;
-		bool isElite;
 		int armor = 10;
 	public:
 		void set_type(string type_to_set);
