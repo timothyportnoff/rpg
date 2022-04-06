@@ -11,25 +11,28 @@ using namespace std;
 string healthBar(int userHealth) {
 	int healthCount = 0;
 	string healthBarline = "";
-	string healthEmote = "🤍";
+	//string healthEmote = "🤍";
 	for (int i = 20; i < 200; i+20) { 
 		if (userHealth >= i) healthCount++; 
 		else break;
 	}
-	for (int j = 0; j <= healthCount; j++) healthBarline += healthEmote;
-	return healthBarline;
+	for (int j = 0; j <= healthCount; j++){
+		healthBarline.push_back(healthEmote);
+		return healthBarline;
+	}
 }
 
 string shieldBar (int heroShield) {
 	int shieldCount = 0;
 	string shieldLine = "";
-	string shieldEmote = "⛨";
 	for (int i = 10; i < 50; i+10) {
 		if (heroShield >= i) shieldCount++;
 		else break;
 	}
-	for (int j = 0; j <= shieldCount; j++) shieldLine += shieldEmote;
-	return shieldLine;
+	for (int j = 0; j <= shieldCount; j++){
+    	//shieldLine.push_back("⛨");
+    	return shieldLine;
+	}
 }
 void combatGameAttack(int &bossHealth) {
 	int attackDamage = rand() % 20 + 20;
