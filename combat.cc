@@ -48,7 +48,6 @@ void youMessedUp(string moveChoice) {
 		cout << "ERROR" << endl;
 	}
 }
-
 void combatGame(int numCheese, int numPots) {
 	system("clear");
 	int userHealth = 100, bossHealth = 200;

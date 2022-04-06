@@ -53,6 +53,8 @@ void get_key() {
 		movecursor(11, 2 * map.at(0).size());
 		cout << "Thank you for paying respects.";
 	}
+	if (dir == 'p') {
+	}
 	if (dir == ESC) {
 		system("clear");
 		exit(1);
@@ -124,7 +126,7 @@ int main() {
 				solved6 = 1;
 			}
 		}
-		//j = 2;
+		j = 2;
 		draw_inventory();
 		get_key();
 	}
