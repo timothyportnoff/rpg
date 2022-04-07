@@ -58,4 +58,7 @@ class Monster : public Actor {
 class Hero : public Actor {
 	private:
 	public:
+		int num_keys;
+		int num_cheese;
+		int num_pots;
 };

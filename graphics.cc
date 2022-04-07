@@ -26,29 +26,26 @@ void print_ending(int ending) {
 	exit(1);
 }
 //Draws the inventory of a given player at a given point.
-void draw_inventory(Hero* h, Point* p) {
-	cout << "=========" << endl;
-	//movecursor(j, 2 * map.at(0).size());
-	//cout << "X: " << p->x << "\tY: " << p->y << endl; 
+void draw_inventory(Hero* h, const int XDISPLAY) {
+	for (int i = 0; i < XDISPLAY-1; i++) { cout << WHITE << "🔯"; }
+	cout << endl << "Cat X: " << h->p->x << "\tCat Y: " << h->p->y << endl; 
 	//cout << "Health: " << h->get_health() << " / health" << endl; 
 	//j += 2;
-	/*
-	   if (num_keys > 0) {
-	//movecursor(j, 2 * map.at(0).size());
-	//cout << "🔑 - Keys: " << numKeys << endl;
-	j++;
+	if (h->num_keys > 0) {
+		//movecursor(j, 2 * map.at(0).size());
+		cout << "🔑 - Keys: " << h->num_keys << endl;
+		//j++;
 	}
-	if (num_pots > 0) {
-	//movecursor(j, 2 * map.at(0).size());
-	//cout << "🧂 - Potions: " << numPots << endl;
-	j++;
+	if (h->num_pots > 0) {
+		//movecursor(j, 2 * map.at(0).size());
+		cout << "🧂 - Potions: " << h->num_pots << endl;
+		//j++;
 	}
-	if (num_cheese > 0) {
-	//movecursor(j, 2 * map.at(0).size());
-	//cout << "🧀 - Cheese: " << numCheese;
-	j++;
+	if (h->num_cheese > 0) {
+		//movecursor(j, 2 * map.at(0).size());
+		cout << "🧀 - Cheese: " << h->num_cheese << endl;
+		//j++;
 	}
-	*/
 	//j += 2;
 }
 void cls() {
