@@ -20,7 +20,7 @@ using namespace std; // TODO: Probably a bad idea
 int x = 62;
 int y = 25;
 
-Point* position = new Point {62, 25}; //Initialize starting position
+Point* position = new Point {64, 25}; //Initialize starting position
 //enum direct {UP, DOWN, LEFT, RIGHT};
 int main() {
 	//print_title("RPG - 41");
