@@ -15,34 +15,34 @@
 #include "graphics.cc"
 #include "combat.cc"
 #include "point.cc"
-// TODO: Probably a bad idea
-using namespace std;
+using namespace std; // TODO: Probably a bad idea
 int x = 62;
 int y = 5;
 
-Point* position = new Point {62, 5};
+Point* position = new Point {62, 5}; //Initialize starting position
+//enum direct {UP, DOWN, LEFT, RIGHT};
 void get_key() {
 	int dir = quick_read();
 	if (dir == 119 || dir == UP_ARROW || dir == 'k') {
-		if (checkTile(position, x, y - 1)) {
+		if (checkTile(position, UP)) {
 			position->y--;
 			drawMap(position);
 		}
 	}
-	if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
-		if (checkTile(position, x - 1, y)) {
-			position->x--;
-			drawMap(position);
-		}
-	}
 	if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
-		if (checkTile(position, x, y + 1)) {
+		if (checkTile(position, DOWN)) {
 			position->y++;
 			drawMap(position);
 		}
 	}
+	if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
+		if (checkTile(position, LEFT)) {
+			position->x--;
+			drawMap(position);
+		}
+	}
 	if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
-		if (checkTile(position, x + 1, y)) {
+		if (checkTile(position, RIGHT)) {
 			position->x++;
 			drawMap(position);
 		}
@@ -54,13 +54,13 @@ void get_key() {
 		cout << "Thank you for paying respects.";
 	}
 	if (dir == 'p') {
+		//combatGame(20, 20);
 	}
 	if (dir == ESC) {
 		system("clear");
 		exit(1);
 	}
 }
-
 
 void draw_inventory() {
 	movecursor(j, 2 * map.at(0).size());
@@ -81,11 +81,11 @@ void draw_inventory() {
 		cout << "🧀 - Cheese Wheels: " << numCheese;
 		j++;
 	}
-	j += 2;
+	//j += 2;
 }
 
 int main() {
-	print_title("RPG - 41");
+	//print_title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
 	//set_alternate_window(true);

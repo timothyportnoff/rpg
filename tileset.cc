@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <stdio.h>
 // Rpg Headers
 #include "point.cc"
 using namespace std;
@@ -67,7 +68,6 @@ vector<string> map = {
 	".......................######..#####.....##########....#####..........",
 	"......................................................................",
 };
-
 
 void drawMap(Point* p) {
 	system("clear");//Can use clearscreen();
@@ -305,15 +305,15 @@ void drawMap(Point* p) {
 					cout << "🔒" << RESET;
 				}
 			}
-	
+
 			// Books
 			else if (map.at(row).at(col) == 'Z' || map.at(row).at(col) == 'z' || map.at(row).at(col) == 'Y' || map.at(row).at(col) == 'y'
-			         || map.at(row).at(col) == 'X' || map.at(row).at(col) == 'x' || map.at(row).at(col) == 'A' || map.at(row).at(col) == 'k'
-			         || map.at(row).at(col) == 'V' || map.at(row).at(col) == '~' || map.at(row).at(col) == 'e' || map.at(row).at(col) == 'k'
-			         || map.at(row).at(col) == 'f' || map.at(row).at(col) == 'J' || map.at(row).at(col) == 'h' || map.at(row).at(col) == 'H'
-			         || map.at(row).at(col) == 'o' || map.at(row).at(col) == 'O' || map.at(row).at(col) == 'r' || map.at(row).at(col) == 'R'
-			         || map.at(row).at(col) == 't' || map.at(row).at(col) == 'T' || map.at(row).at(col) == 'i' || map.at(row).at(col) == 'I'
-			         || map.at(row).at(col) == 'l' || map.at(row).at(col) == 'j' || map.at(row).at(col) == 'f' || map.at(row).at(col) == 'F') {
+					|| map.at(row).at(col) == 'X' || map.at(row).at(col) == 'x' || map.at(row).at(col) == 'A' || map.at(row).at(col) == 'k'
+					|| map.at(row).at(col) == 'V' || map.at(row).at(col) == '~' || map.at(row).at(col) == 'e' || map.at(row).at(col) == 'k'
+					|| map.at(row).at(col) == 'f' || map.at(row).at(col) == 'J' || map.at(row).at(col) == 'h' || map.at(row).at(col) == 'H'
+					|| map.at(row).at(col) == 'o' || map.at(row).at(col) == 'O' || map.at(row).at(col) == 'r' || map.at(row).at(col) == 'R'
+					|| map.at(row).at(col) == 't' || map.at(row).at(col) == 'T' || map.at(row).at(col) == 'i' || map.at(row).at(col) == 'I'
+					|| map.at(row).at(col) == 'l' || map.at(row).at(col) == 'j' || map.at(row).at(col) == 'f' || map.at(row).at(col) == 'F') {
 				setbgcolor(192, 192, 192); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
 				cout << "📖" << RESET;
@@ -322,10 +322,17 @@ void drawMap(Point* p) {
 		cout << endl;
 	}
 }
-bool checkTile(Point* current_position, int nextx, int nexty) { // 
-	//Returns 0 if the block is solid
-	//Returns 1 if you can walk over the block
-	//Checks value on other side of block
+//bool checkTile(Point* current_position, int nextx, int nexty) { // 
+enum direction {UP, DOWN, LEFT, RIGHT};
+bool checkTile(Point* current_position, int direction) { // 
+	//Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
+	int nextx = current_position->x;
+	int nexty = current_position->y;
+
+	if (direction == UP) { nexty--; }
+	if (direction == DOWN) { nexty++; }
+	if (direction == LEFT) { nextx--; }
+	if (direction == RIGHT) { nextx++; }
 
 	int diffx = current_position->x - nextx;
 	int diffy = current_position->y - nexty;
