@@ -7,23 +7,27 @@ class Entity {
 	private:
 		string name;
 	public:
-		void set_name(string name);
 		string get_name();
+		void set_name(string name);
 };
 
 class Actor : public Entity {
 	private:
 		int health = 100;
+		int shield = 100;
 		int defense = 10;
 		int damage = 10;
 		int resistance = 10;
 		int level = 0;
 	public:
-		void set_health(int);
 		int get_health();
-		void set_level(int);
+		void set_health(int);
+		int get_shield();
+		void set_shield(int);
 		int get_level();
+		void set_level(int);
 		virtual void print_stats();
+		friend ostream& operator << (ostream &outs, const Actor &rhs);
 };
 
 class Monster : public Actor {

@@ -4,6 +4,7 @@ using H=Hero;
 using M=Monster;
 using namespace std;
 
+//ENTITY
 void E::set_health(int health) {
 	this->health = health;
 }
@@ -22,9 +23,7 @@ virtual void E::print_stats() {
 	cout << "My attack is " << attack << endl;
 }
 
-
-
-
+//MONSTER
 M::M() {
 	name = "Tim";
 	isElite = false;
@@ -61,9 +60,6 @@ friend istream& operator >> (istream &outs, const Monster mm) {
 	return input;
 }
 
-
-
-// Print*************************************************
 void print_stats() {
 	cout << "Health: " << health;
 	cout << "Armor: " << armor;
