@@ -13,7 +13,7 @@ struct Point {
 	    y = 0;
     }
     //nondefault
-    Point(float new_x, float new_y) {
+    Point(int new_x, int new_y) {
         x = new_x;
         y = new_y;
     }

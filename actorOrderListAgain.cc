@@ -13,47 +13,20 @@ CircDLelement<Actor> *insertFront(
 int main(int argc, char **argv) {
     Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");
 
-//change all Actor to Actor.
-
+	//TODO:We may need to actually assign the getter values in this main.
     bridges->setTitle("Attack Line:");
 
     // create the linked list elements with
     // your mother
-    CircDLelement<Actor> *Actor[] = {
-        new CircDLelement<Actor> Actor(get_name(), get_health(), get_level())
-            //armor = 25
-        new CircDLelement<Actor>(
-            Actor(
-                "Hero 2: Paladin"
-                "Health: 125"
-                "Armor: 50"
-                "Level: 1"
-                )
-        new CircDLelement<Actor>(
-            Actor(
-                "Hero 3"
-                "Health: 80"
-                "Armor: 10"
-                "Level: 1"
-                )
-        new CircDLelement<Actor>(
-            Actor(
-                "Monster 1"
-                "Health: 80"
-                "Armor: 0"
-                "Level: 2"
-                "Grunt"
-                )
-        new CircDLelement<Actor>(
-            Actor(
-                "Monster 2"
-                "Health: 200"
-                "Armor: 100"
-                "Level: 8"
-                "Boss"
-                )
-            )
-    };
+	actorCount = 5;
+    CircDLelement<shared_ptr<Actor>> cast;
+	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
+
     CircDLelement<Actor> *head =  nullptr;
     for (int i = 0; i < actorCount; i++) {
         if (i)
