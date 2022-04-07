@@ -15,83 +15,22 @@
 #include "graphics.cc"
 #include "combat.cc"
 #include "point.cc"
+#include "class.h"
 using namespace std; // TODO: Probably a bad idea
 int x = 62;
 int y = 5;
 
 Point* position = new Point {62, 5}; //Initialize starting position
 //enum direct {UP, DOWN, LEFT, RIGHT};
-void get_key() {
-	int dir = quick_read();
-	if (dir == 119 || dir == UP_ARROW || dir == 'k') {
-		if (checkTile(position, UP)) {
-			position->y--;
-			drawMap(position);
-		}
-	}
-	if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
-		if (checkTile(position, DOWN)) {
-			position->y++;
-			drawMap(position);
-		}
-	}
-	if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
-		if (checkTile(position, LEFT)) {
-			position->x--;
-			drawMap(position);
-		}
-	}
-	if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
-		if (checkTile(position, RIGHT)) {
-			position->x++;
-			drawMap(position);
-		}
-	}
-	if (dir == 'f') {
-		movecursor(10, 2 * map.at(0).size());
-		cout << "You have paid respects.";
-		movecursor(11, 2 * map.at(0).size());
-		cout << "Thank you for paying respects.";
-	}
-	if (dir == 'p') {
-		//combatGame(20, 20);
-	}
-	if (dir == ESC) {
-		system("clear");
-		exit(1);
-	}
-}
-
-void draw_inventory() {
-	movecursor(j, 2 * map.at(0).size());
-	cout << "X: " << x << "     Y: " << y;
-	j += 2;
-	if (numKeys > 0) {
-		movecursor(j, 2 * map.at(0).size());
-		cout << "🔑 - Keys: " << numKeys << endl;
-		j++;
-	}
-	if (numPots > 0) {
-		movecursor(j, 2 * map.at(0).size());
-		cout << "🧂 - Potions: " << numPots << endl;
-		j++;
-	}
-	if (numCheese > 0) {
-		movecursor(j, 2 * map.at(0).size());
-		cout << "🧀 - Cheese Wheels: " << numCheese;
-		j++;
-	}
-	//j += 2;
-}
-
 int main() {
 	//print_title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
-	//set_alternate_window(true);
+	set_alternate_window(true);
 	srand(time(0));
 
-	drawMap(position);
+	Hero* cat = new Hero(position);
+	drawMap(cat, position);
 	while (true) {
 		for (size_t row = 0; row < map.size(); row++) {
 			char puzzle1 = '1';
@@ -126,9 +65,46 @@ int main() {
 				solved6 = 1;
 			}
 		}
+
 		j = 2;
-		draw_inventory();
-		get_key();
+		int dir = quick_read();
+		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
+			if (checkTile(cat, UP)) {
+				position->y--;
+				drawMap(cat, position);
+			}
+		}
+		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
+			if (checkTile(cat, DOWN)) {
+				position->y++;
+				drawMap(cat, position);
+			}
+		}
+		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
+			if (checkTile(cat, LEFT)) {
+				position->x--;
+				drawMap(cat, position);
+			}
+		}
+		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
+			if (checkTile(cat, RIGHT)) {
+				position->x++;
+				drawMap(cat, position);
+			}
+		}
+		if (dir == 'f') {
+			movecursor(10, 2 * map.at(0).size());
+			cout << "You have paid respects.";
+			movecursor(11, 2 * map.at(0).size());
+			cout << "Thank you for paying respects.";
+		}
+		if (dir == 'p') {
+			combatGame(20, 20);
+		}
+		if (dir == ESC) {
+			system("clear");
+			exit(1);
+		}
 	}
 }
 
