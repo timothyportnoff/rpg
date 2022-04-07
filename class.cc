@@ -1,4 +1,4 @@
-#include "monster.h"
+#include "class.h"
 using E=Entity;
 using H=Hero;
 using M=Monster;
