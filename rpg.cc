@@ -18,9 +18,9 @@
 #include "class.h"
 using namespace std; // TODO: Probably a bad idea
 int x = 62;
-int y = 5;
+int y = 25;
 
-Point* position = new Point {62, 5}; //Initialize starting position
+Point* position = new Point {62, 25}; //Initialize starting position
 //enum direct {UP, DOWN, LEFT, RIGHT};
 int main() {
 	//print_title("RPG - 41");
@@ -30,7 +30,7 @@ int main() {
 	srand(time(0));
 
 	Hero* cat = new Hero(position);
-	drawMap(cat, position);
+	drawMap(cat);
 	while (true) {
 		for (size_t row = 0; row < map.size(); row++) {
 			char puzzle1 = '1';
@@ -70,26 +70,26 @@ int main() {
 		int dir = quick_read();
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
 			if (checkTile(cat, UP)) {
-				position->y--;
-				drawMap(cat, position);
+				cat->p->y--;
+				drawMap(cat);
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
 			if (checkTile(cat, DOWN)) {
-				position->y++;
-				drawMap(cat, position);
+				cat->p->y++;
+				drawMap(cat);
 			}
 		}
 		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
 			if (checkTile(cat, LEFT)) {
-				position->x--;
-				drawMap(cat, position);
+				cat->p->x--;
+				drawMap(cat);
 			}
 		}
 		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
 			if (checkTile(cat, RIGHT)) {
-				position->x++;
-				drawMap(cat, position);
+				cat->p->x++;
+				drawMap(cat);
 			}
 		}
 		if (dir == 'f') {
