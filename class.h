@@ -60,5 +60,5 @@ class Hero : public Actor {
 	public:
 		int num_keys;
 		int num_cheese;
-		int num_pots;
+		int num_potions;
 };

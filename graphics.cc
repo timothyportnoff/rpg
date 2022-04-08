@@ -36,9 +36,9 @@ void draw_inventory(Hero* h, const int XDISPLAY) {
 		cout << "🔑 - Keys: " << h->num_keys << endl;
 		//j++;
 	}
-	if (h->num_pots > 0) {
+	if (h->num_potions > 0) {
 		//movecursor(j, 2 * map.at(0).size());
-		cout << "🧂 - Potions: " << h->num_pots << endl;
+		cout << "🧂 - Potions: " << h->num_potions << endl;
 		//j++;
 	}
 	if (h->num_cheese > 0) {

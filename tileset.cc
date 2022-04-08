@@ -13,9 +13,6 @@ bool solved3;
 bool solved4;
 bool solved5;
 bool solved6;
-int numKeys = 0;
-int numPots = 0;
-int numCheese = 0;
 unsigned int i = 0;
 unsigned int j = 0;
 
@@ -593,23 +590,23 @@ void drawMap(Hero* h) {
 			}
 			else if (map.at(nexty).at(nextx) == 'C') {
 				map.at(nexty).at(nextx) = ' ';
-				numCheese++;
+				h->num_cheese++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'P') {
 				map.at(nexty).at(nextx) = ' ';
-				numPots++;
+				h->num_potions++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'K') {
 				map.at(nexty).at(nextx) = ' ';
-				numKeys++;
+				h->num_keys++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'L') {
-				if (numKeys > 0) {
+				if (h->num_keys > 0) {
 					map.at(nexty).at(nextx) = ' ';
-					numKeys--;
+					h->num_keys--;
 					return 1;
 				} else return 0;
 			}
