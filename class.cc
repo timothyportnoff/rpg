@@ -31,7 +31,9 @@ void A::set_damage(int damage) { this->damage = damage; }
 int A::get_resistance() const { return resistance; }
 void A::set_resistance(int resistance) { this->resistance = resistance; }
 int A::get_level() const { return level; }
-void A::set_level(int) { this->level = level; }
+void A::set_level(int level) { this->level = level; }
+int A::get_speed() const { return speed; }
+void A::set_speed(int speed) { this->speed = speed; }
 
 //HERO
 //MONSTER

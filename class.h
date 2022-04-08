@@ -32,6 +32,7 @@ class Actor : public Entity {
 		int defense = 10;
 		int resistance = 10;
 		int level = 0;
+		int speed = 0;
 		bool is_elite = 0;
 	public:
 		Actor(Point* p);
@@ -43,6 +44,8 @@ class Actor : public Entity {
 		void set_damage(int);
 		int get_resistance() const;
 		void set_resistance(int);
+		int get_speed() const;
+		void set_speed(int);
 		int get_level() const;
 		void set_level(int);
 		//bool set_elite (bool boolean) { if (boolean) is_elite = (1); else is_elite = (0); }
