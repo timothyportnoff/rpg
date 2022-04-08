@@ -27,30 +27,26 @@ void print_ending(int ending) {
 }
 //Draws the inventory of a given player at a given point.
 void draw_inventory(Hero* h, const int XDISPLAY) {
-	setbgcolor(8, 8, 8);
-	setcolor(100, 100, 100);
-	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🔯"; } //cout <<  "🟥"; }
+	setbgcolor(1, 11, 17);
+	setcolor(51, 51, 51);
+	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🟫"; }
 	cout << RESET;
 
-	cout << endl << "Cat X: " << h->p->x << "\tCat Y: " << h->p->y << endl; 
+	cout << endl << "X: " << h->p->x << "\tY: " << h->p->y << endl; 
 	//cout << "Health: " << h->get_health() << " / health" << endl; 
-	//j += 2;
 	if (h->num_keys > 0) {
-		//movecursor(j, 2 * map.at(0).size());
 		cout << "🔑 - Keys: " << h->num_keys << endl;
-		//j++;
 	}
 	if (h->num_potions > 0) {
-		//movecursor(j, 2 * map.at(0).size());
 		cout << "🧂 - Potions: " << h->num_potions << endl;
-		//j++;
 	}
 	if (h->num_cheese > 0) {
-		//movecursor(j, 2 * map.at(0).size());
 		cout << "🧀 - Cheese: " << h->num_cheese << endl;
-		//j++;
 	}
-	//j += 2;
+	setbgcolor(1, 11, 17);
+	setcolor(51, 51, 51);
+	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🟫"; }
+	cout << RESET << endl;
 }
 void cls() {
 	cout << "\033[2J\033[1;1H";

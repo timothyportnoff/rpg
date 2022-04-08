@@ -17,7 +17,7 @@ unsigned int i = 0;
 unsigned int j = 0;
 
 //vector
-void load_map() {} //TODO
+//void load_map() {} //TODO
 vector<string> map = {
 	".............................................................................................................................................................................................",
 	".............................................................................................................................................................................................",
@@ -133,7 +133,7 @@ static const size_t XDISPLAY = 17; //Show a 20x20 area at a time
 static const size_t YDISPLAY = 17; //Show a 20x20 area at a time
 
 void drawMap(Hero* h) {
-	system("clear");//Can use clearscreen();
+	system("clear"); 
 	//cls();
 
 	int start_x = h->p->x - XDISPLAY/2;
@@ -162,152 +162,131 @@ void drawMap(Hero* h) {
 
 	for (size_t row = start_y; row <= end_y; row++) {
 		for (size_t col = start_x; col < end_x; col++) {
-			//for (size_t row = 0; row < map.size(); row++) {
-			//for (size_t col = 0; col < map.at(row).size(); col++) {
+			setbgcolor(51, 51, 51); //Our Default backround color value
 
 			//Places player over value at map
 			if (row == h->p->y && col == h->p->x) {
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(0, 0, 205); //Blue fg
-				cout << "👤" << RESET;
+				setcolor(72, 191, 146); 
+				cout << "🧔";
 			}
 
 			//UNINTERACTABLES
 			else if (map.at(row).at(col) == '#') {
-				setbgcolor(47, 79, 79);
-				cout << BLACK << "🟥" << RESET;
+				//setbgcolor(1, 11, 17);
+				setbgcolor(16, 128, 114);
+	 			setcolor(51, 51, 51);
+	 			//setcolor(72, 191, 146);
+				cout << "🟥" << RESET;
 			} else if (map.at(row).at(col) == 'a') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
-				cout << "🏮" << RESET;
+				cout << "🏮";
 			} else if (map.at(row).at(col) == '.') {
-				cout << "  " << RESET;
+				setbgcolor(1, 11, 17);
+				cout << "  ";
 			} else if (map.at(row).at(col) == ' ') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(160, 160, 160);
-				cout <<  "🟥" << RESET;
+				//setcolor(160, 160, 160);
+				//cout <<  "🟥" << RESET;
+				cout << "  ";
 			}
 
 			//Interactables
 			else if (map.at(row).at(col) == 'p') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(238, 130, 238); //Violet fg
-				cout << "🙋" << RESET;
+				cout << "🙋";
 			} else if (map.at(row).at(col) == 'w') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(218, 165, 32); //Gold fg
-				cout << "🏆" << RESET;
+				cout << "🏆";
 			} else if (map.at(row).at(col) == 'K') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(218, 165, 32); //Gold fg
-				cout << "🔑" << RESET;
+				cout << "🔑";
 			} else if (map.at(row).at(col) == 'P') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 0, 139); //Dark magenta fg
-				cout << "🧂" << RESET;
+				cout << "🧂";
 			} else if (map.at(row).at(col) == 'C') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(255, 140, 0); //Dark orange fg
-				cout << "🧀" << RESET;
+				cout << "🧀";
 			} else if (map.at(row).at(col) == 'c') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				cout << RED << "🔥" << RESET;
+				setcolor(180, 53, 1); 
+				cout << "🔥";
 			} else if (map.at(row).at(col) == 'L') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(218, 165, 32); //Gold fg
-				cout << "🔒" << RESET;
+				cout << "🔒";
 			} else if (map.at(row).at(col) == 'E') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				cout << RED << "👹" << RESET;
+				setcolor(180, 53, 1); 
+				cout << "👹";
 			}
 
 			//Puzzles (pressure plates, boxes, switches and gates)
 
 			//Switch
 			else if (map.at(row).at(col) == 's') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(255, 0, 255); //Magenta fg
-				cout << "📍" << RESET;
+				setcolor(255, 0, 255); //Magenta
+				cout << "📍";
 			} else if (map.at(row).at(col) == 'S') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(30, 144, 255); //Dodger blue fg
-				cout << "📍" << RESET;
+				setcolor(30, 144, 255); //Dodger blue
+				cout << "📍";
 			}
 
 			//Gate
 			else if (map.at(row).at(col) == 'G') { //Open gate
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(105, 105, 105); //GATE fg
-				cout << "II" << RESET;
+				setcolor(105, 105, 105);
+				cout << "II";
 			} else if (map.at(row).at(col) == 'g') { //Open Gate
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(105, 105, 105);  //gate fg
-				cout << "__" << RESET;
+				setcolor(105, 105, 105);
+				cout << "__";
 			}
 
 			//Box puzzles
 			else if (map.at(row).at(col) == 'b') {
-				setbgcolor(150, 150, 150); //Light grey bg
-				setcolor(139, 69, 19); //Saddle brown fg
-				cout << "📦" << RESET;
+				setcolor(160, 82, 45);
+				//setcolor(255, 140, 0); //Dark orange fg
+				cout << "📦";
 			}
 
 			//UP Pressure plates 1-5
 			else if (map.at(row).at(col) == '1') {
 				solved1 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			} else if (map.at(row).at(col) == '2') {
 				solved2 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			} else if (map.at(row).at(col) == '3') {
 				solved3 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			} else if (map.at(row).at(col) == '4') {
 				solved4 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			} else if (map.at(row).at(col) == '5') {
 				solved5 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			} else if (map.at(row).at(col) == 'q') {
 				//solved5 = 0;
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
-				cout << "💢" << RESET;
+				cout << "💢";
 			}
 
 			//DOWN Pressure plates 1-5 (6-0)
 			else if (map.at(row).at(col) == '6') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			} else if (map.at(row).at(col) == '7') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			} else if (map.at(row).at(col) == '8') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			} else if (map.at(row).at(col) == '9') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			} else if (map.at(row).at(col) == '0') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			} else if (map.at(row).at(col) == 'Q') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			}
@@ -316,25 +295,21 @@ void drawMap(Hero* h) {
 			else if (map.at(row).at(col) == '!') {
 				if (solved1 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
-					cout << WHITE << "🟥" << RESET;
+					cout << WHITE << "🟥";
 				}
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
-					cout << "🔒" << RESET;
+					cout << "🔒";
 				}
 			}
 
 			if (map.at(row).at(col) == '?') {
 				if (solved2 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
 					cout << WHITE << "🟥" << RESET;
 				}
 
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
@@ -343,12 +318,10 @@ void drawMap(Hero* h) {
 			if (map.at(row).at(col) == '^') {
 				if (solved3 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
 					cout << WHITE << "🟥" << RESET;
 				}
 
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
@@ -357,29 +330,24 @@ void drawMap(Hero* h) {
 			if (map.at(row).at(col) == '&') {
 				if (solved4 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
 					cout << WHITE << "🟥" << RESET;
 				}
 
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
 			} if (map.at(row).at(col) == '%') {
 				if (solved5 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
 					cout << WHITE << "🟥" << RESET;
 				}
 
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
 			} if (map.at(row).at(col) == '$') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(107, 142, 35); //Olive drab
 				cout << "🔒" << RESET;
 			} 
@@ -387,12 +355,10 @@ void drawMap(Hero* h) {
 			if (map.at(row).at(col) == '*') {
 				if (solved6 == 1) {
 					map.at(row).at(col) = ' ';
-					setbgcolor(150, 150, 150); //Light grey bg
 					cout << WHITE << "🟥" << RESET;
 				}
 
 				else {
-					setbgcolor(150, 150, 150); //Light grey bg
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
@@ -407,7 +373,6 @@ void drawMap(Hero* h) {
 					|| map.at(row).at(col) == 't' || map.at(row).at(col) == 'T' || map.at(row).at(col) == 'i' || map.at(row).at(col) == 'I'
 					|| map.at(row).at(col) == 'l' || map.at(row).at(col) == 'j' || map.at(row).at(col) == 'f' || map.at(row).at(col) == 'F' 
 					|| map.at(row).at(col) == 'y') {
-				setbgcolor(150, 150, 150); //Light grey bg
 				setcolor(0, 128, 0); //Green fg
 				cout << "📖" << RESET;
 			}
