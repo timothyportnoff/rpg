@@ -20,12 +20,12 @@ int main(int argc, char **argv) {
     // your mother
 	actorCount = 5;
     CircDLelement<shared_ptr<Actor>> cast;
-	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
-	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
-	cast.push_back(make_shared<Hero> Actor(get_name(), get_health(), get_level()));
-	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
-	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
-	cast.push_back(make_shared<Monster> Monster(get_name(), get_health(), get_level()));
+	cast.push_back(make_shared<Hero> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	cast.push_back(make_shared<Hero> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	cast.push_back(make_shared<Hero> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	cast.push_back(make_shared<Monster> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	cast.push_back(make_shared<Monster> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	cast.push_back(make_shared<Monster> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
 
     CircDLelement<Actor> *head =  nullptr;
     for (int i = 0; i < actorCount; i++) {
