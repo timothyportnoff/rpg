@@ -64,4 +64,5 @@ class Hero : public Actor {
 		int num_keys;
 		int num_cheese;
 		int num_potions;
+		//void print_stats() const {
 };

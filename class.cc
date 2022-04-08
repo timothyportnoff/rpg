@@ -17,11 +17,12 @@ string E::get_name() const { return "name"; }
 void E::set_name(string name) { this->name = name; }
 
 void E::print_stats() const {
-	//cout << "My name is " << name << endl;
+	cout << "My name is " << name << endl;
 }
 
 //ACTOR
 A::Actor (Point* p) { this->p = p; }
+//A::Actor (string name, Point* p) { this->p = p; }
 int A::get_health() const { return health; }
 void A::set_health(int health) { this->health = health; }
 int A::get_shield() const { return shield; }
@@ -35,30 +36,29 @@ void A::set_level(int level) { this->level = level; }
 int A::get_speed() const { return speed; }
 void A::set_speed(int speed) { this->speed = speed; }
 
-//HERO
 //MONSTER
-/*M::M() {
-  name = "Tim";
-  isElite = false;
-  monsterType = "Celestial";
-  }
-  M::Monster(string name, bool isElite, string monsterType) {
-  this->name = name;
-  this->elite = true;
-  this->monster_type = "celestial";
-  }
-  int M::get_level() const { return level; }
-  string M::get_name const { return name; }
-
-  void M::set_name(name_to_set) { name = name_to_set; }
-  void M::set_level(level_to_set) { 
-  if (level_to_set < 1 or newLevel > 99)
-  throw invalid_argument( "Error! Invalid Level Needs to be 1 and 99");
-  level = level_to_set; 
-  }
-  void M::set_health(health_to_set) { 
-  name = name_to_set; }
-
+/*
+M::Monster() {};
+M::Monster(string emoji, int x, int y, string type, string name, int health, int shield, int damage, int level) {
+	this->emoji = emoji;
+	this->type = type;
+	this->name = name;
+	this->health = health;
+	this->shield = shield;
+	this->damage = damage;
+	this->resistance = resistance;
+	this->level = level;
+}
+*/
+//HERO
+/*
+void H::print_stats() const {
+	cout << get_emoji() << endl;
+	cout << "Type: " << get_type() << endl;
+	cout << "Name: " << get_emoji() << endl;
+}
+*/
+/*
 
 //Output Monster
 friend ostream& operator << (ostream &output, const Monster &m) {
@@ -67,6 +67,7 @@ output << "Level: " << m.name << endl;
 output << "Name: " << m.name << endl;
 return output;
 }
+
 //Input Monster
 friend istream& operator >> (istream &outs, const Monster mm) {
 input >> m.name >> m.monsterType;
