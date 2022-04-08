@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+//#include "point.cc"
 
 using namespace std;//NOTE: THIS IS A REALLY BAD IDEA //FIXME
 
