@@ -1,0 +1,5 @@
+hero cat pc 60 60 10 20
+hero dog paladin 50 50 10 20
+monster kerney pc 1 1 100 99
+monster mencarelli pc 2 3 10 77
+monster betancourt pc 4 4 10 88
