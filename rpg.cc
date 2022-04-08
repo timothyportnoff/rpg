@@ -45,7 +45,6 @@ int main() {
 			auto found4 = map.at(row).find(puzzle4);
 			auto found5 = map.at(row).find(puzzle5);
 			auto found6 = map.at(row).find(puzzle6);
-
 			if (found1 != string::npos) {
 				solved1 = 1;
 			}
@@ -65,8 +64,6 @@ int main() {
 				solved6 = 1;
 			}
 		}
-
-		j = 2;
 		int dir = quick_read();
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
 			if (checkTile(cat, UP)) {
@@ -99,10 +96,11 @@ int main() {
 			cout << "Thank you for paying respects.";
 		}
 		if (dir == 'p') {
-			combatGame(20, 20);
+			initiate_combat();
 		}
 		if (dir == ESC) {
 			system("clear");
+			cout << "Exiting..." << endl;
 			exit(1);
 		}
 	}
