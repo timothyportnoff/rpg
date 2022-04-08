@@ -108,6 +108,7 @@ int main() {
 		if (dir == ESC) {
 			system("clear");
 			cout << "Exiting..." << endl;
+			show_cursor(false);
 			exit(1);
 		}
 	}
