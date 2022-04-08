@@ -37,6 +37,7 @@ class Actor : public Entity {
 		bool is_elite = 0;
 	public:
 		Actor(Point* p);
+		Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int get_health() const;
 		void set_health(int);
 		int get_shield() const;

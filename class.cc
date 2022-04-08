@@ -23,6 +23,18 @@ void E::print_stats() const {
 //ACTOR
 A::Actor (Point* p) { this->p = p; }
 //A::Actor (string name, Point* p) { this->p = p; }
+A::Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_name(name);
+	set_type(type);
+	this->p->x = x;
+	this->p->y = y;
+	set_emoji(emoji);
+	this->health = health;
+	this->shield = shield;
+	this->damage = damage;
+	this->resistance = resistance;
+	this->level = level;
+}
 int A::get_health() const { return health; }
 void A::set_health(int health) { this->health = health; }
 int A::get_shield() const { return shield; }
