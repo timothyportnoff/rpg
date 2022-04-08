@@ -20,13 +20,13 @@ using namespace std; // TODO: Probably a bad idea
 int x = 62;
 int y = 25;
 
-Point* position = new Point {64, 25}; //Initialize starting position
+Point* position = new Point {63, 63}; //Initialize starting position
 //enum direct {UP, DOWN, LEFT, RIGHT};
 int main() {
 	//print_title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
-	set_alternate_window(true);
+	//set_alternate_window(true);
 	srand(time(0));
 
 	Hero* cat = new Hero(position);
