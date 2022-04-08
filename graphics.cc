@@ -27,7 +27,11 @@ void print_ending(int ending) {
 }
 //Draws the inventory of a given player at a given point.
 void draw_inventory(Hero* h, const int XDISPLAY) {
-	for (int i = 0; i < XDISPLAY-1; i++) { cout << WHITE << "🔯"; }
+	setbgcolor(8, 8, 8);
+	setcolor(100, 100, 100);
+	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🔯"; } //cout <<  "🟥"; }
+	cout << RESET;
+
 	cout << endl << "Cat X: " << h->p->x << "\tCat Y: " << h->p->y << endl; 
 	//cout << "Health: " << h->get_health() << " / health" << endl; 
 	//j += 2;

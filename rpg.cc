@@ -20,7 +20,11 @@ using namespace std; // TODO: Probably a bad idea
 int x = 62;
 int y = 25;
 
-Point* position = new Point {63, 63}; //Initialize starting position
+
+void load_actors() {
+	ifstream in("actors.txt");	
+}
+void load_map() {}
 //enum direct {UP, DOWN, LEFT, RIGHT};
 int main() {
 	//print_title("RPG - 41");
@@ -29,8 +33,11 @@ int main() {
 	//set_alternate_window(true);
 	srand(time(0));
 
-	Hero* cat = new Hero(position);
+	vector<Actor*> list;
+	load_actors();
+	Hero* cat = new Hero(new Point{63, 63});
 	drawMap(cat);
+
 	while (true) {
 		for (size_t row = 0; row < map.size(); row++) {
 			char puzzle1 = '1';
