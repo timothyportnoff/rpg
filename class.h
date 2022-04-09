@@ -58,11 +58,13 @@ class Actor : public Entity {
 class Monster : public Actor {
 	private:
 	public:
+		using Actor::Actor;
 };
 
 class Hero : public Actor {
 	private:
 	public:
+		using Actor::Actor;
 		int num_keys;
 		int num_cheese;
 		int num_potions;
