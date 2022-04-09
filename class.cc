@@ -1,5 +1,6 @@
 #include "class.h"
 #include <iostream>
+#include <string>
 using E=Entity;
 using H=Hero;
 using M=Monster;
@@ -21,6 +22,7 @@ void E::print_stats() const {
 }
 
 //ACTOR
+A::Actor() {};
 A::Actor (Point* p) { this->p = p; }
 //A::Actor (string name, Point* p) { this->p = p; }
 A::Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
@@ -49,12 +51,14 @@ int A::get_speed() const { return speed; }
 void A::set_speed(int speed) { this->speed = speed; }
 
 //MONSTER
-/*
 M::Monster() {};
-M::Monster(string emoji, int x, int y, string type, string name, int health, int shield, int damage, int level) {
-	this->emoji = emoji;
-	this->type = type;
-	this->name = name;
+/*
+M::Monster (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_name(name);
+	set_type(type);
+	this->p->x = x;
+	this->p->y = y;
+	set_emoji(emoji);
 	this->health = health;
 	this->shield = shield;
 	this->damage = damage;
@@ -63,6 +67,23 @@ M::Monster(string emoji, int x, int y, string type, string name, int health, int
 }
 */
 //HERO
+H::Hero(Point* p) {
+	this->p = p;
+};
+/*
+H::Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_name(name);
+	set_type(type);
+	this->p->x = x;
+	this->p->y = y;
+	set_emoji(emoji);
+	this->health = health;
+	this->shield = shield;
+	this->damage = damage;
+	this->resistance = resistance;
+	this->level = level;
+}
+*/
 /*
 void H::print_stats() const {
 	cout << get_emoji() << endl;
