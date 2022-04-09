@@ -15,7 +15,13 @@
 #include "graphics.cc"
 #include "combat.cc"
 #include "class.h"
-using namespace std; // TODO: Probably a bad idea
+//bridges stuff
+#include "Bridges.h"
+//#include "CircDLelement.h"
+
+
+using namespace std;
+using namespace bridges;
 
 void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 	ifstream in(filename);
@@ -59,6 +65,11 @@ void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 		else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
+/*
+CircDLelement<Actor> *insertFront(
+    CircDLelement<Actor> *tailElement,
+    CircDLelement<Actor> *newElement);
+*/
 
 void load_map() {}
 
@@ -80,7 +91,30 @@ int main() {
 
 	shared_ptr<Actor> cat = cast.at(0); 
 	drawMap(cat);
+/*
+	Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
+	bridges->setTitle("Attack Turn:");
+*/
 
+	sort(cast.begin(), cast.end(), [](const shared_ptr<Actor>& lhs, const shared_ptr<Actor>& rhs) { //feeling skeptical about using Actor&...
+			return lhs->get_speed() > rhs->get_speed();
+   	});
+/*
+	int actorCount = 0;
+	for (int k =cast.begin(); cast.end(); k++) actorCount++;
+	CircDLelement<shared_ptr<Actor>> actorOrder;
+	for (const shared_ptr<Actor> &a : cast) {
+		////not sorted by hero/monster, it's sorted by speed. However, it still needs to be classified as a hero/monster.
+		if (a->get_type() == "hero") new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+		if (a->get_type() == "monster") new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	}
+
+	CircDLelement<shared_ptr<Actor> *head =  nullptr;
+    		for (int i = 0; i < actorCount; i++) {
+        	if (i) head = insertFront(head, Actor[i]);
+        	else head = Actor[i];
+			}
+*/
 	while (true) {
 		for (size_t row = 0; row < map.size(); row++) {
 			char puzzle1 = '1';
