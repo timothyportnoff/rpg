@@ -70,9 +70,9 @@ class Hero : public Actor {
 	private:
 	public:
 		//using Actor::Actor;
-		Actor::Actor;
+		//Actor::Actor;
 		Hero (Point* p);
-		//Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) override;
+		Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int num_keys;
 		int num_cheese;
 		int num_potions;

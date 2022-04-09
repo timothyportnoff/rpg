@@ -70,20 +70,22 @@ M::Monster (string name, string type, int x, int y, string emoji, int health, in
 H::Hero(Point* p) {
 	this->p = p;
 };
-/*
+
 H::Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
 	set_name(name);
 	set_type(type);
-	this->p->x = x;
-	this->p->y = y;
+	p->set_x(x);
+	//p = new Point{x, y};
+	//this->p->x = x;
+	//this->p->y = y;
 	set_emoji(emoji);
 	this->health = health;
 	this->shield = shield;
 	this->damage = damage;
 	this->resistance = resistance;
 	this->level = level;
-}
-*/
+};
+
 /*
 void H::print_stats() const {
 	cout << get_emoji() << endl;
