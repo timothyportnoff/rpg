@@ -1,31 +1,65 @@
-//Sorry about the screen flickering. I couldn't figure out how to rewrite a single line on the map.
-//Also, if you move a block into a corner, you're screwed.
+// C++ headers
 #include <iostream>
-#include <ostream>
 #include <fstream>
 #include <cmath>
 #include <string>
 #include <vector>
 #include <unistd.h>
 #include <algorithm>
+#include <memory>
+// Kerney headers
 #include "/public/colors.h"
 #include "/public/read.h"
-// My headers
+// RPG headers
 #include "tileset.cc"
 #include "graphics.cc"
 #include "combat.cc"
-#include "point.cc"
 #include "class.h"
 using namespace std; // TODO: Probably a bad idea
-int x = 62;
-int y = 25;
 
+void load_actors(vector<shared_ptr<Actor>> cast) {
+	ifstream in("actors.txt");
+	if (!in) cerr << "Uh oh" << endl;
+	while (in) {
+		string class_type;
+		in >> class_type;
 
-void load_actors() {
-	ifstream in("actors.txt");	
+		string name;
+		in >> name;
+
+		string type;
+		in >> type;
+
+		int x;
+		in >> x;
+		
+		int y;
+		in >> y;
+		
+		string emoji;
+		in >> emoji;
+		
+		int health;
+		in >> health;
+		
+		int shield;
+		in >> shield;
+		
+		int damage;
+		in >> damage;
+		
+		int resistance;
+		in >> resistance;
+		
+		int level;
+		in >> level;
+
+		//cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
+	}
 }
+
 void load_map() {}
-//enum direct {UP, DOWN, LEFT, RIGHT};
+
 int main() {
 	//print_title("RPG - 41");
 	set_raw_mode(true);
@@ -33,8 +67,9 @@ int main() {
 	//set_alternate_window(true);
 	srand(time(0));
 
-	vector<Actor*> list;
-	load_actors();
+	vector<shared_ptr<Actor>> cast;
+	load_actors(cast);
+
 	Hero* cat = new Hero(new Point{63, 63});
 	drawMap(cat);
 
