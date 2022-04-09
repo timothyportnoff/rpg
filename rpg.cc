@@ -17,8 +17,8 @@
 #include "class.h"
 using namespace std; // TODO: Probably a bad idea
 
-void load_actors(vector<shared_ptr<Actor>>& cast) {
-	ifstream in("actors.txt");
+void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
+	ifstream in(filename);
 	if (!in) cerr << "Uh oh no file found" << endl;
 	while (in) {
 		string class_type;
@@ -63,14 +63,20 @@ void load_actors(vector<shared_ptr<Actor>>& cast) {
 void load_map() {}
 
 int main() {
-	//print_title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
 	//set_alternate_window(true);
 	srand(time(0));
-
 	vector<shared_ptr<Actor>> cast;
-	load_actors(cast);
+
+	print_title("RPG - 41");
+	cout << endl;
+	cout << "New game (1);" << endl;
+	cout << "Load game (2);" << endl;
+	int choice;
+	cin >> choice;
+	if (choice == 2) load_actors(cast, "save_actors.txt");
+	else load_actors(cast, "actors.txt");
 
 	shared_ptr<Actor> cat = cast.at(0); 
 	drawMap(cat);

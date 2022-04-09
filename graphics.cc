@@ -2,11 +2,7 @@
 
 void print_title(string title) {
 	system("clear");
-	system("figlet -f slant 'Welcome' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\tTo' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\t\tHell' | lolcat");
+	system("figlet -f slant 'Welcome to hell' | lolcat");
 	sleep(1);
 }
 void print_ending(int ending) {
