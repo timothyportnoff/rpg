@@ -17,7 +17,7 @@
 #include "class.h"
 using namespace std; // TODO: Probably a bad idea
 
-void load_actors(vector<shared_ptr<Actor>> cast) {
+void load_actors(vector<shared_ptr<Actor>>& cast) {
 	ifstream in("actors.txt");
 	if (!in) cerr << "Uh oh" << endl;
 	while (in) {
@@ -32,30 +32,31 @@ void load_actors(vector<shared_ptr<Actor>> cast) {
 
 		int x;
 		in >> x;
-		
+
 		int y;
 		in >> y;
-		
+
 		string emoji;
 		in >> emoji;
-		
+
 		int health;
 		in >> health;
-		
+
 		int shield;
 		in >> shield;
-		
+
 		int damage;
 		in >> damage;
-		
+
 		int resistance;
 		in >> resistance;
-		
+
 		int level;
 		in >> level;
 
 		if (class_type == "hero") cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
-		//cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
+		else if (class_type == "monster") cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
+		else cerr << class_type << endl;
 	}
 }
 
@@ -71,7 +72,6 @@ int main() {
 	vector<shared_ptr<Actor>> cast;
 	load_actors(cast);
 
-	//Hero* cat = new Hero(new Point{63, 63});
 	shared_ptr<Actor> cat = cast.at(0); 
 	drawMap(cat);
 
@@ -113,6 +113,7 @@ int main() {
 			if (checkTile(cat, UP)) {
 				cat->p->y--;
 				drawMap(cat);
+
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {

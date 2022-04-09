@@ -76,7 +76,7 @@ H::Hero (string name, string type, int x, int y, string emoji, int health, int s
 	set_type(type);
 	Point* temp = new Point{x, y};
 	this->p = temp;
-	delete temp;
+	//delete temp;
 	set_emoji(emoji);
 	this->health = health;
 	this->shield = shield;

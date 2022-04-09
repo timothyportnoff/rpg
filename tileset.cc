@@ -132,7 +132,7 @@ vector<string> map = {
 static const size_t XDISPLAY = 17; //Show a 20x20 area at a time
 static const size_t YDISPLAY = 17; //Show a 20x20 area at a time
 
-void drawMap(shared_ptr<Actor> h) {
+void drawMap(shared_ptr<Actor>& h) {
 	system("clear"); 
 	//cls();
 
@@ -384,8 +384,8 @@ void drawMap(shared_ptr<Actor> h) {
 		}
 		//bool checkTile(Point* current_position, int nextx, int nexty) { // 
 		enum direction {UP, DOWN, LEFT, RIGHT};
-		bool checkTile(shared_ptr<Actor> h, int direction) { // 
-			//Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
+		bool checkTile(shared_ptr<Actor> h, int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
+		//bool checkTile(dynamic_pointer_cast<Hero>(h), int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
 			Point* current_position = {};
 			int nextx = h->p->x;
 			int nexty = h->p->y;
@@ -559,23 +559,23 @@ void drawMap(shared_ptr<Actor> h) {
 			}
 			else if (map.at(nexty).at(nextx) == 'C') {
 				map.at(nexty).at(nextx) = ' ';
-				h->num_cheese++;
+				static_pointer_cast<Hero> (h)->num_cheese++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'P') {
 				map.at(nexty).at(nextx) = ' ';
-				h->num_potions++;
+				static_pointer_cast<Hero>(h)->num_potions++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'K') {
 				map.at(nexty).at(nextx) = ' ';
-				h->num_keys++;
+				static_pointer_cast<Hero>(h)->num_keys++;
 				return 1;
 			}
 			else if (map.at(nexty).at(nextx) == 'L') {
-				if (h->num_keys > 0) {
+				if (static_pointer_cast<Hero>(h)->num_keys > 0) {
 					map.at(nexty).at(nextx) = ' ';
-					h->num_keys--;
+					static_pointer_cast<Hero>(h)->num_keys--;
 					return 1;
 				} else return 0;
 			}
