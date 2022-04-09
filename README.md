@@ -1,12 +1,18 @@
 # RPG - 41
 
-##A tui dungeon
+##A tui dungeon, tileset style!
 
-##Basic stuff:
-- Remake world map, with fog of war
+##Featured implementations:
+- "Fog of war" world map that uses emojis instead of basic characters!
+- Collision detection - detects when you walk into a wall, item, door, enemy, etc.
+- Inventory sytem that uses potions, keys, and cheese.
+- Uses the legendary colors.h by ShakaUVM (#include "/public/colors.h")
+- Inventory system for all Heroes
+
+##TODO:
 - Make tileset class for map
-- Introduce combat, and some way of winning
-- Use colors (Use #include "/public/colors.h")
-- Do something about the 40 lines of dialogue and/or descriptions of the world
-- Nonblocking I/O (also in colors.h)???
-- Inventory System - needs rework
+- Fix bad combat
+- Fix fircular linked list 
+- Do something about the 40 books. They're taking control of all available chars!
+- Loot system for all Monsters
+
