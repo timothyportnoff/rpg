@@ -54,7 +54,8 @@ void load_actors(vector<shared_ptr<Actor>> cast) {
 		int level;
 		in >> level;
 
-		cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
+		if (class_type == "hero") cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
+		//cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 
@@ -70,7 +71,8 @@ int main() {
 	vector<shared_ptr<Actor>> cast;
 	load_actors(cast);
 
-	Hero* cat = new Hero(new Point{63, 63});
+	//Hero* cat = new Hero(new Point{63, 63});
+	shared_ptr<Actor> cat = cast.at(0); 
 	drawMap(cat);
 
 	while (true) {

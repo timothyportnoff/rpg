@@ -132,7 +132,7 @@ vector<string> map = {
 static const size_t XDISPLAY = 17; //Show a 20x20 area at a time
 static const size_t YDISPLAY = 17; //Show a 20x20 area at a time
 
-void drawMap(Hero* h) {
+void drawMap(shared_ptr<Actor> h) {
 	system("clear"); 
 	//cls();
 
@@ -384,7 +384,7 @@ void drawMap(Hero* h) {
 		}
 		//bool checkTile(Point* current_position, int nextx, int nexty) { // 
 		enum direction {UP, DOWN, LEFT, RIGHT};
-		bool checkTile(Hero* h, int direction) { // 
+		bool checkTile(shared_ptr<Actor> h, int direction) { // 
 			//Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
 			Point* current_position = {};
 			int nextx = h->p->x;
