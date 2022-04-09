@@ -54,9 +54,7 @@ void load_actors(vector<shared_ptr<Actor>> cast) {
 		int level;
 		in >> level;
 
-		//cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
-		cast.push_back(make_shared<Hero> (new Point{1,1}));
-		break;
+		cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 
