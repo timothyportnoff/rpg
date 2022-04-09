@@ -23,6 +23,7 @@ void load_actors(vector<shared_ptr<Actor>>& cast) {
 	while (in) {
 		string class_type;
 		in >> class_type;
+		if (!in) break;
 
 		string name;
 		in >> name;
@@ -54,9 +55,8 @@ void load_actors(vector<shared_ptr<Actor>>& cast) {
 		int level;
 		in >> level;
 
-		if (class_type == "hero") cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
-		else if (class_type == "monster") cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
-		else cerr << class_type << endl;
+		if (class_type == "hero") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
+	//	else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 

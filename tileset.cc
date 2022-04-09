@@ -384,7 +384,7 @@ void drawMap(shared_ptr<Actor>& h) {
 		}
 		//bool checkTile(Point* current_position, int nextx, int nexty) { // 
 		enum direction {UP, DOWN, LEFT, RIGHT};
-		bool checkTile(shared_ptr<Actor> h, int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
+		bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
 		//bool checkTile(dynamic_pointer_cast<Hero>(h), int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
 			Point* current_position = {};
 			int nextx = h->p->x;

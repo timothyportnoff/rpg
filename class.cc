@@ -8,8 +8,11 @@ using A=Actor;
 using namespace std;
 
 //ENTITY
+string E::get_class_type() const { return "class_type"; }
+void E::set_type(string class_type) { this->class_type = class_type; }
+
 string E::get_type() const { return "type"; }
-void E::set_type(string type) { this->type = type; }
+void E::set_class_type(string type) { this->type = type; }
 
 string E::get_emoji() const { return "emoji"; }
 void E::set_emoji(string emoji) { this->emoji = emoji; }
@@ -25,7 +28,8 @@ void E::print_stats() const {
 A::Actor() {};
 A::Actor (Point* p) { this->p = p; }
 //A::Actor (string name, Point* p) { this->p = p; }
-A::Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+A::Actor (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_class_type(class_type);
 	set_name(name);
 	set_type(type);
 	this->p->x = x;
@@ -71,7 +75,8 @@ H::Hero(Point* p) {
 	this->p = p;
 };
 
-H::Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+H::Hero (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_class_type(class_type);
 	set_name(name);
 	set_type(type);
 	Point* temp = new Point{x, y};
