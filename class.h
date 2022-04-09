@@ -26,7 +26,7 @@ class Item : public Entity {
 };
 
 class Actor : public Entity {
-	private:
+	protected:
 		int health = 100;
 		int shield = 100;
 		int damage = 10;
@@ -36,6 +36,7 @@ class Actor : public Entity {
 		int speed = 0;
 		bool is_elite = 0;
 	public:
+		Actor();
 		Actor(Point* p);
 		Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int get_health() const;
@@ -58,13 +59,20 @@ class Actor : public Entity {
 class Monster : public Actor {
 	private:
 	public:
-		using Actor::Actor;
+		//using Actor::Actor;
+		//Monster() override;
+		Monster();
+		//Monster (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
+
 };
 
 class Hero : public Actor {
 	private:
 	public:
-		using Actor::Actor;
+		//using Actor::Actor;
+		//Actor::Actor;
+		Hero (Point* p);
+		Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int num_keys;
 		int num_cheese;
 		int num_potions;

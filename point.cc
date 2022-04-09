@@ -17,6 +17,8 @@ struct Point {
         x = new_x;
         y = new_y;
     }
+    void set_x(int x) { this->x = x; }
+    void set_y(int y) { this->y = y; }
     ~Point () {}
 };
 ostream& operator <<(ostream& outs, const Point& p) {
