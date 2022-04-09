@@ -1,4 +1,4 @@
-hero cat pc 60 60 🤠 10 20 5 10 10
+hero cat pc 105 29 🤠 10 20 5 10 10
 hero dog paladin 50 50 🦎 10 25 8 41 4
 monster kerney boss 1 1 👽 100 99 40 40 40
 monster mencarelli goblin 2 3 🐎 10 77 50 30 20
