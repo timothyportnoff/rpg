@@ -18,7 +18,9 @@ struct Point {
 		y = new_y;
 	}
 	public:
+	int get_x() const { return x; }
 	void set_x(int x) { this->x = x; }
+	int get_y() const { return y; }
 	void set_y(int y) { this->y = y; }
 	~Point () {}
 };

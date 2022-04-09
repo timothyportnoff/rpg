@@ -19,7 +19,7 @@ using namespace std; // TODO: Probably a bad idea
 
 void load_actors(vector<shared_ptr<Actor>>& cast) {
 	ifstream in("actors.txt");
-	if (!in) cerr << "Uh oh" << endl;
+	if (!in) cerr << "Uh oh no file found" << endl;
 	while (in) {
 		string class_type;
 		in >> class_type;
@@ -56,7 +56,7 @@ void load_actors(vector<shared_ptr<Actor>>& cast) {
 		in >> level;
 
 		if (class_type == "hero") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
-	//	else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
+		else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 
@@ -145,6 +145,26 @@ int main() {
 		}
 		if (dir == ESC) {
 			system("clear");
+			ofstream file;
+			file.open("save_actors.txt");
+			//TODO: Do I need this? : static_pointer_cast<Hero>(h)->num_cheese++;
+			for (int i = 0; i < cast.size(); i++) {
+					file << cast.at(i)->get_class_type() << " ";
+					file << cast.at(i)->get_name() << " "; 
+					file << cast.at(i)->get_type() << " "; 
+					file << cast.at(i)->p->get_x() << " "; 
+					file << cast.at(i)->p->get_y() << " "; 
+					file << cast.at(i)->get_emoji() << " "; 
+					file << cast.at(i)->get_health() << " "; 
+					file << cast.at(i)->get_shield() << " "; 
+					file << cast.at(i)->get_damage() << " "; 
+					file << cast.at(i)->get_resistance() << " ";
+					file << cast.at(i)->get_level() << " ";
+					file << endl;
+				if (cast.at(i)->get_class_type() == "hero") {
+				}
+			}
+			file.close();
 			cout << "Exiting..." << endl;
 			show_cursor(false);
 			exit(1);
