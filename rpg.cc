@@ -90,7 +90,7 @@ int main() {
 	else load_actors(cast, "actors.txt");
 
 	shared_ptr<Actor> cat = cast.at(0); 
-	drawMap(cat);
+	draw_map(cat);
 /*
 	Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
 	bridges->setTitle("Attack Turn:");
@@ -149,29 +149,30 @@ int main() {
 			}
 		}
 		int dir = quick_read();
+		
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
 			if (checkTile(cat, UP)) {
 				cat->p->y--;
-				drawMap(cat);
+				draw_map(cat);
 
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
 			if (checkTile(cat, DOWN)) {
 				cat->p->y++;
-				drawMap(cat);
+				draw_map(cat);
 			}
 		}
 		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
 			if (checkTile(cat, LEFT)) {
 				cat->p->x--;
-				drawMap(cat);
+				draw_map(cat);
 			}
 		}
 		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
 			if (checkTile(cat, RIGHT)) {
 				cat->p->x++;
-				drawMap(cat);
+				draw_map(cat);
 			}
 		}
 		if (dir == 'f') {

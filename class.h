@@ -56,6 +56,8 @@ class Actor : public Entity {
 		void set_level(int);
 		//bool set_elite (bool boolean) { if (boolean) is_elite = (1); else is_elite = (0); }
 		void print_stats() const;
+		void print_health_bar() const;
+		void print_health() const;
 		//friend ostream& operator << (ostream &outs, const Actor &rhs);
 };
 
@@ -74,7 +76,11 @@ class Hero : public Actor {
 	public:
 		Hero (Point* p);
 		Hero (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
-		int num_keys;
-		int num_cheese;
-		int num_potions;
+		int num_keys = 0;
+		int num_cheese = 0;
+		int num_potions = 0;
+		void print_keys () const;
+		void print_cheese () const;
+		void print_potions () const;
+		void print_shield () const;
 };

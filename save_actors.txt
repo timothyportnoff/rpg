@@ -1,0 +1,5 @@
+hero cat pc 95 34 🤠 5 5 5 10 10 
+hero dog paladin 50 50 🦎 6 6 8 10 4 
+monster kerney boss 1 1 👽 10 9 40 10 40 
+monster mencarelli goblin 2 3 🐎 4 77 50 10 20 
+monster betancourt wolf 4 4 🐕 7 88 80 10 11 

@@ -53,23 +53,28 @@ int A::get_level() const { return level; }
 void A::set_level(int level) { this->level = level; }
 int A::get_speed() const { return speed; }
 void A::set_speed(int speed) { this->speed = speed; }
+void A::print_health_bar() const {
+	string health_bar;
+	for (int j = 0; j <= health; j++) health_bar += "🖤";
+	cout << health_bar << endl;;
+}
 
 //MONSTER
 M::Monster() {};
 /*
-M::Monster (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
-	set_name(name);
-	set_type(type);
-	this->p->x = x;
-	this->p->y = y;
-	set_emoji(emoji);
-	this->health = health;
-	this->shield = shield;
-	this->damage = damage;
-	this->resistance = resistance;
-	this->level = level;
-}
-*/
+   M::Monster (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+   set_name(name);
+   set_type(type);
+   this->p->x = x;
+   this->p->y = y;
+   set_emoji(emoji);
+   this->health = health;
+   this->shield = shield;
+   this->damage = damage;
+   this->resistance = resistance;
+   this->level = level;
+   }
+   */
 //HERO
 H::Hero(Point* p) {
 	this->p = p;
@@ -89,14 +94,64 @@ H::Hero (string class_type, string name, string type, int x, int y, string emoji
 	this->resistance = resistance;
 	this->level = level;
 };
+void A::print_health() const {
+	if (get_health() > 0) {
+		cout << "H: ";
+		setcolor(180, 53, 1); // RED :)
+		for (int i = 0; i < get_health(); i++) {
+			cout << "💗"; 
+		}
+		cout << RESET << endl;
+	}
+};
+void H::print_keys() const {
+	if (num_keys > 0) {
+		cout << "K: ";
+		setcolor(218, 165, 32); //Gold fg
+		for (int i = 0; i < num_keys; i++) {
+			cout << "🔑"; 
+		}
+		cout << RESET << endl;
+	}
+};
+void H::print_shield() const {
+	if (get_shield() > 0) {
+		cout << "S: ";
+		setcolor(51, 51, 51);
+		for (int i = 0; i < get_shield(); i++) {
+			cout << "➕"; 
+		}
+		cout << RESET << endl;
+	}
+};
+void H::print_cheese () const {
+	if (num_cheese > 0) {
+		cout << "C: ";
+		setcolor(255, 140, 0); //Dark orange fg
+		for (int i = 0; i < num_cheese; i++) {
+			cout << "🧀";
+		}
+		cout << RESET << endl;
+	}
+};
+void H::print_potions () const {
+	if (num_potions > 0) {
+		cout << "P: ";
+		setcolor(139, 0, 139); //Dark magenta fg
+		for (int i = 0; i < num_potions; i++) {
+			cout << "🧂"; 
+		}
+		cout <<  RESET << endl;
+	}
+};
 
 /*
-void H::print_stats() const {
-	cout << get_emoji() << endl;
-	cout << "Type: " << get_type() << endl;
-	cout << "Name: " << get_emoji() << endl;
-}
-*/
+   void H::print_stats() const {
+   cout << get_emoji() << endl;
+   cout << "Type: " << get_type() << endl;
+   cout << "Name: " << get_emoji() << endl;
+   }
+   */
 /*
 
 //Output Monster

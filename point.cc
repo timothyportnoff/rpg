@@ -4,7 +4,8 @@
 using namespace std;
 
 struct Point {
-	float x, y;
+	int x = 0; 
+	int y = 0;
 	//default
 	//Point() = default;
 	//Better constructor
@@ -24,8 +25,9 @@ struct Point {
 	void set_y(int y) { this->y = y; }
 	~Point () {}
 };
-ostream& operator <<(ostream& outs, const Point& p) {
-	outs << setprecision(2) << fixed;
-	outs << "(" << p.x << "," << p.y << ")";
+ostream& operator <<(ostream& outs, const Point p) {
+	//outs << setprecision(2) << fixed;
+	outs << "Position X: " << p.x << "\tY: " << p.y << endl; 
+	//outs << "(" << p.x << "," << p.y << ")";
 	return outs;
 }
