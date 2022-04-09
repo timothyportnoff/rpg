@@ -17,12 +17,13 @@
 #include "class.h"
 using namespace std; // TODO: Probably a bad idea
 
-void load_actors(vector<shared_ptr<Actor>> cast) {
-	ifstream in("actors.txt");
-	if (!in) cerr << "Uh oh" << endl;
+void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
+	ifstream in(filename);
+	if (!in) cerr << "Uh oh no file found" << endl;
 	while (in) {
 		string class_type;
 		in >> class_type;
+		if (!in) break;
 
 		string name;
 		in >> name;
@@ -32,47 +33,52 @@ void load_actors(vector<shared_ptr<Actor>> cast) {
 
 		int x;
 		in >> x;
-		
+
 		int y;
 		in >> y;
-		
+
 		string emoji;
 		in >> emoji;
-		
+
 		int health;
 		in >> health;
-		
+
 		int shield;
 		in >> shield;
-		
+
 		int damage;
 		in >> damage;
-		
+
 		int resistance;
 		in >> resistance;
-		
+
 		int level;
 		in >> level;
 
-		//cast.push_back(make_shared<Hero> (name, type, x, y, emoji, health, shield, damage, resistance, level));
-		cast.push_back(make_shared<Hero> (new Point{1,1}));
-		break;
+		if (class_type == "hero") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
+		else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 
 void load_map() {}
 
 int main() {
-	//print_title("RPG - 41");
 	set_raw_mode(true);
 	show_cursor(false);
 	//set_alternate_window(true);
 	srand(time(0));
-
 	vector<shared_ptr<Actor>> cast;
-	load_actors(cast);
 
-	Hero* cat = new Hero(new Point{63, 63});
+	print_title("RPG - 41");
+	cout << endl;
+	cout << "New game (1);" << endl;
+	cout << "Load game (2);" << endl;
+	int choice;
+	cin >> choice;
+	if (choice == 2) load_actors(cast, "save_actors.txt");
+	else load_actors(cast, "actors.txt");
+
+	shared_ptr<Actor> cat = cast.at(0); 
 	drawMap(cat);
 
 	while (true) {
@@ -113,6 +119,7 @@ int main() {
 			if (checkTile(cat, UP)) {
 				cat->p->y--;
 				drawMap(cat);
+
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
@@ -144,6 +151,26 @@ int main() {
 		}
 		if (dir == ESC) {
 			system("clear");
+			ofstream file;
+			file.open("save_actors.txt");
+			//TODO: Do I need this? : static_pointer_cast<Hero>(h)->num_cheese++;
+			for (int i = 0; i < cast.size(); i++) {
+					file << cast.at(i)->get_class_type() << " ";
+					file << cast.at(i)->get_name() << " "; 
+					file << cast.at(i)->get_type() << " "; 
+					file << cast.at(i)->p->get_x() << " "; 
+					file << cast.at(i)->p->get_y() << " "; 
+					file << cast.at(i)->get_emoji() << " "; 
+					file << cast.at(i)->get_health() << " "; 
+					file << cast.at(i)->get_shield() << " "; 
+					file << cast.at(i)->get_damage() << " "; 
+					file << cast.at(i)->get_resistance() << " ";
+					file << cast.at(i)->get_level() << " ";
+					file << endl;
+				if (cast.at(i)->get_class_type() == "hero") {
+				}
+			}
+			file.close();
 			cout << "Exiting..." << endl;
 			show_cursor(false);
 			exit(1);

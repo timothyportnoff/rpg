@@ -6,11 +6,14 @@ using namespace std;//NOTE: THIS IS A REALLY BAD IDEA //FIXME
 
 class Entity {
 	private:
+		string class_type;
 		string type;
 		string emoji;
 		string name;
 	public:
 		Point* p;
+		string get_class_type() const;
+		void set_class_type(string class_type);
 		string get_type() const;
 		void set_type(string type);
 		string get_emoji() const;
@@ -38,7 +41,7 @@ class Actor : public Entity {
 	public:
 		Actor();
 		Actor(Point* p);
-		Actor (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
+		Actor (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int get_health() const;
 		void set_health(int);
 		int get_shield() const;
@@ -69,12 +72,9 @@ class Monster : public Actor {
 class Hero : public Actor {
 	private:
 	public:
-		//using Actor::Actor;
-		//Actor::Actor;
 		Hero (Point* p);
-		Hero (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
+		Hero (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int num_keys;
 		int num_cheese;
 		int num_potions;
-		//void print_stats() const {
 };

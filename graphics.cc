@@ -2,11 +2,7 @@
 
 void print_title(string title) {
 	system("clear");
-	system("figlet -f slant 'Welcome' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\tTo' | lolcat");
-	sleep(1);
-	system("figlet -f slant '\t\tHell' | lolcat");
+	system("figlet -f slant 'Welcome to hell' | lolcat");
 	sleep(1);
 }
 void print_ending(int ending) {
@@ -26,14 +22,14 @@ void print_ending(int ending) {
 	exit(1);
 }
 //Draws the inventory of a given player at a given point.
-void draw_inventory(Hero* h, const int XDISPLAY) {
+void draw_inventory(shared_ptr<Actor> h, const int XDISPLAY) {
 	setbgcolor(1, 11, 17);
 	setcolor(51, 51, 51);
 	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🟫"; }
 	cout << RESET;
 
 	cout << endl << "X: " << h->p->x << "\tY: " << h->p->y << endl; 
-	//cout << "Health: " << h->get_health() << " / health" << endl; 
+	/*
 	if (h->num_keys > 0) {
 		cout << "🔑 - Keys: " << h->num_keys << endl;
 	}
@@ -43,6 +39,7 @@ void draw_inventory(Hero* h, const int XDISPLAY) {
 	if (h->num_cheese > 0) {
 		cout << "🧀 - Cheese: " << h->num_cheese << endl;
 	}
+	*/
 	setbgcolor(1, 11, 17);
 	setcolor(51, 51, 51);
 	for (int i = 0; i < XDISPLAY-1; i++) { cout << "🟫"; }
