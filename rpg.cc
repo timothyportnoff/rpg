@@ -16,16 +16,30 @@
 #include "combat.cc"
 #include "point.cc"
 #include "class.h"
-using namespace std; // TODO: Probably a bad idea
+//others
+#include "bridges.cc"
+#include "CircDLelement.h"
+
+using namespace std;
+using namespace bridges;
 int x = 62;
 int y = 25;
+
+
 
 
 void load_actors() {
 	ifstream in("actors.txt");	
 }
+
+
 void load_map() {}
 //enum direct {UP, DOWN, LEFT, RIGHT};
+
+CircDLelement<Actor> *insertFront(
+    CircDLelement<Actor> *tailElement,
+    CircDLelement<Actor> *newElement);
+
 int main() {
 	//print_title("RPG - 41");
 	set_raw_mode(true);
@@ -36,6 +50,7 @@ int main() {
 	vector<Actor*> list;
 	load_actors();
 	Hero* cat = new Hero(new Point{63, 63});
+
 	drawMap(cat);
 
 	while (true) {
