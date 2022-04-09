@@ -20,8 +20,12 @@ int main(int argc, char **argv) {
     // your mother
 	int actorCount = 6;
     CircDLelement<shared_ptr<Actor>> cast;
-	for (int i = 0, i < 3, i++) cast.push_back(make_shared<Hero> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed()));
-	for (int j = 0, j <3, j++) cast.push_back(make_shared<Monster> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed()));
+	new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
 
     CircDLelement<Actor> *head =  nullptr;
     for (int i = 0; i < actorCount; i++) {
