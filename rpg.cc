@@ -67,8 +67,8 @@ void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 	}
 }
 CircDLelement<Actor> *insertFront(
-    CircDLelement<Actor> *tailElement,
-    CircDLelement<Actor> *newElement);
+		CircDLelement<Actor> *tailElement,
+		CircDLelement<Actor> *newElement);
 
 void load_game_map() {}
 
@@ -89,38 +89,37 @@ int main() {
 	if (choice == 2) load_actors(cast, "save_actors.txt");
 	else load_actors(cast, "actors.txt");
 
-<<<<<<< HEAD
-	shared_ptr<Actor> h = cast.at(0); 
-	draw_game_map(h);
-/*
-=======
-	shared_ptr<Actor> cat = cast.at(0); 
-	draw_game_map(cat);
-
->>>>>>> 69d68935005d15894230ad88129cfb4fca987db6
-	Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
-	bridges->setTitle("Attack Turn:");
-	sort(cast.begin(), cast.end(), [](const shared_ptr<Actor>& lhs, const shared_ptr<Actor>& rhs) { //feeling skeptical about using Actor&...
-			return lhs->get_speed() > rhs->get_speed();
-   	});
-	
-	int actorCount = 0;
-	for (const shared_ptr<Actor> &k : cast) actorCount++;
-	CircDLelement<shared_ptr<Actor>> actorOrder;
+	draw_game_map(cast);
 	/*
-	for (const shared_ptr<Actor> &a : cast) {
-		////not sorted by hero/monster, it's sorted by speed. However, it still needs to be classified as a hero/monster.
-		if (a->get_type() == "hero") new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
-		if (a->get_type() == "monster") new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	   =======
+	   shared_ptr<Actor> cat = cast.at(0); 
+	   draw_game_map(cat);
+
+	   >>>>>>> 69d68935005d15894230ad88129cfb4fca987db6
+	   Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
+	   bridges->setTitle("Attack Turn:");
+	   sort(cast.begin(), cast.end(), [](const shared_ptr<Actor>& lhs, const shared_ptr<Actor>& rhs) { //feeling skeptical about using Actor&...
+	   return lhs->get_speed() > rhs->get_speed();
+	   });
+
+	   int actorCount = 0;
+	   for (const shared_ptr<Actor> &k : cast) actorCount++;
+	   CircDLelement<shared_ptr<Actor>> actorOrder;
+
+	   for (const shared_ptr<Actor> &a : cast) {
+	////not sorted by hero/monster, it's sorted by speed. However, it still needs to be classified as a hero/monster.
+	if (a->get_type() == "hero") new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
+	if (a->get_type() == "monster") new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
 	}
 
 	CircDLelement<shared_ptr<Actor> *head =  nullptr;
-    		for (int i = 0; i < actorCount; i++) {
-        	if (i) head = insertFront(head, Actor[i]);
-        	else head = Actor[i];
-			}
-			*/
+	for (int i = 0; i < actorCount; i++) {
+	if (i) head = insertFront(head, Actor[i]);
+	else head = Actor[i];
+	}
+	*/
 	while (true) {
+	shared_ptr<Actor> h = cast.at(0); 
 		for (size_t row = 0; row < game_map.size(); row++) {
 			char puzzle1 = '1';
 			char puzzle2 = '2';
@@ -154,59 +153,56 @@ int main() {
 			}
 		}
 		int dir = quick_read();
-		
+
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
-			if (checkTile(h, UP)) {
+			if (checkTile(cast, UP)) {
 				h->p->y--;
-				draw_game_map(h);
+				draw_game_map(cast);
 
 			}
 		}
-		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
-			if (checkTile(h, DOWN)) {
+		else if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
+			if (checkTile(cast, DOWN)) {
 				h->p->y++;
-				draw_game_map(h);
+				draw_game_map(cast);
 			}
 		}
-		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
-			if (checkTile(h, LEFT)) {
+		else if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
+			if (checkTile(cast, LEFT)) {
 				h->p->x--;
-				draw_game_map(h);
+				draw_game_map(cast);
 			}
 		}
-		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
-			if (checkTile(h, RIGHT)) {
+		else if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
+			if (checkTile(cast, RIGHT)) {
 				h->p->x++;
-				draw_game_map(h);
+				draw_game_map(cast);
 			}
 		}
-		if (dir == 'f') {
+		else if (dir == 'f') {
 			movecursor(10, 2 * game_map.at(0).size());
 			cout << "You have paid respects.";
 			movecursor(11, 2 * game_map.at(0).size());
 			cout << "Thank you for paying respects.";
 		}
-		if (dir == 'p') {
-			//initiate_combat(h, direction);
-		}
-		if (dir == ESC) {
+		else if (dir == ESC) {
 			system("clear");
 			ofstream file;
 			file.open("save_actors.txt");
 			//TODO: Do I need this? : static_pointer_cast<Hero>(h)->num_cheese++;
 			for (int i = 0; i < cast.size(); i++) {
-					file << cast.at(i)->get_class_type() << " ";
-					file << cast.at(i)->get_name() << " "; 
-					file << cast.at(i)->get_type() << " "; 
-					file << cast.at(i)->p->get_x() << " "; 
-					file << cast.at(i)->p->get_y() << " "; 
-					file << cast.at(i)->get_emoji() << " "; 
-					file << cast.at(i)->get_health() << " "; 
-					file << cast.at(i)->get_shield() << " "; 
-					file << cast.at(i)->get_damage() << " "; 
-					file << cast.at(i)->get_resistance() << " ";
-					file << cast.at(i)->get_level() << " ";
-					file << endl;
+				file << cast.at(i)->get_class_type() << " ";
+				file << cast.at(i)->get_name() << " "; 
+				file << cast.at(i)->get_type() << " "; 
+				file << cast.at(i)->p->get_x() << " "; 
+				file << cast.at(i)->p->get_y() << " "; 
+				file << cast.at(i)->get_emoji() << " "; 
+				file << cast.at(i)->get_health() << " "; 
+				file << cast.at(i)->get_shield() << " "; 
+				file << cast.at(i)->get_damage() << " "; 
+				file << cast.at(i)->get_resistance() << " ";
+				file << cast.at(i)->get_level() << " ";
+				file << endl;
 				if (cast.at(i)->get_class_type() == "hero") {
 				}
 			}

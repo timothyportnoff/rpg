@@ -8,51 +8,108 @@
 
 using namespace std;
 
-//vector<shared_ptr<Actor>> cast;
-
-void combatGameAttack(int &bossHealth) {
-	int attackDamage = rand() % 20 + 20;
-	bossHealth = bossHealth - attackDamage;
-	cout << "Wow! You did " << attackDamage << " damage to the boss!" << endl;
+void print_moves(shared_ptr<Hero>& h) {
+	cout << "[1] - Attack" << endl;
+	cout << "[2] - Flee" << endl;
+	cout << "[3] - Use Potion" << endl;
+	cout << "[4] - Use Cheese" << endl;
 }
-void combatGamePotion(int &userHealth, int &numPotions) {
-	userHealth = userHealth + 20;
-	numPotions--;
-	cout << "Your health is now " << userHealth << "." << endl;
-}
-void youMessedUp(string moveChoice) {
-	if (moveChoice != "1" and moveChoice != "2") {
-		cout << "You lost your turn and did no damage!" << endl;
-	} else {
-		cout << "ERROR" << endl;
+void make_move(shared_ptr<Hero>& h, shared_ptr<Monster>& m) {
+	while (true) {
+	cout << "Move: ";
+		int move = 0;
+		cin >> move;
+		if (move == 1) {
+			size_t attack = rand() % 3 + 1;
+			m->set_health(m->get_health() - attack);
+			cout << "You hit " << m->get_name() << ", dealing " << attack << " damage" << endl;
+			return;
+		}
+		else if (move == 2) {
+			cout << "You coward." << endl;
+		}
+		else if (move == 3) {
+			if (h->get_potions() > 0) {
+				h->add_potions(-1);
+				h->add_health(3);
+				cout << "You used a potion." << endl;
+				return;
+			}
+			else cout << "No potions!" << endl;
+		}
+		else if (move == 4) {
+			if (h->get_cheese() > 0) {
+				h->add_cheese(-1);
+				h->add_health(3);
+				cout << "You used a cheese." << endl;
+				return;
+			}
+			else cout << "No cheese!" << endl;
+		}
 	}
 }
-extern vector<shared_ptr<Actor>> cast;
-int initiate_combat(shared_ptr<Actor>& h, int direction) { //Returns false if you cannot pass, returns 1 if the block is pass-able. Checks value on other side of block
+int initiate_combat(vector <shared_ptr <Actor>>& cast, int direction) { //Returns false if you cannot pass, returns 1 if the block is pass-able. Checks value on other side of block
 	system("clear");
-	int userHealth = 100, bossHealth = 200;
-	string moveChoice;
-	cout << "Hello! Welcome to the final boss!\n";
-	cout << "Searching for boss...\n";
-	//file << cast.at(i)->get_class_type() << " ";
-	//static_pointer_cast<Hero>(h)->print_keys(); 
-	//shared_ptr<Monster> m = static_pointer_cast<Monster>(cast.at(3));
+	shared_ptr<Hero> h = static_pointer_cast<Hero> (cast.at(0)); 
 	shared_ptr<Monster> m = static_pointer_cast<Monster> (cast.at(0)); 
-	//cout << cast.at(2)->get_name() << endl;
-	cout << "Success!\n";
-	while (userHealth > 0 or bossHealth > 0) {
-		if (userHealth <= 0 or bossHealth <= 0) break;
-		//cout << "Your Health: " << userHealth << " " << healthBar(userHealth) << endl;
-		//cout << "Boss Health: " << bossHealth << " " << healthBar(bossHealth) << endl;
-		cin >> moveChoice;
-		if (moveChoice == "1") { combatGameAttack(bossHealth); } 
-		else { youMessedUp(moveChoice); }
-		if (userHealth <= 0 or bossHealth <= 0) break;
-		int bossAttackDamage = rand() % 30;
-		userHealth = userHealth - bossAttackDamage;
-		cout << "The boss did " << bossAttackDamage << " damage to your health." << endl;
+	int x = h->p->x;
+	int y = h->p->y;
+	if (direction == UP) { y--; }
+	if (direction == DOWN) { y++; }
+	if (direction == LEFT) { x--; }
+	if (direction == RIGHT) { x++; }
+
+	for (shared_ptr<Actor> a : cast) {
+		if (a->get_class_type() == "monster") {
+			if(a->p->x == x && a->p->y == y) {
+				m = static_pointer_cast<Monster> (a); 
+			}
+		}
 	}
-	if (userHealth <= 0) print_ending(0);
-	if (bossHealth <= 0) print_ending(1);
-	return 0;
+
+	draw_bar();
+	m->print_stats();		
+	cout << m->get_emoji() << endl << endl;
+	cout << h->get_emoji() << endl;		
+	h->print_stats();		
+	draw_bar();
+
+	cout << "A terrifying " << m->get_type() << " named " << m->get_name() << " blocks your path!" << endl;
+	sleep(1);
+	while (h->get_health() > 0 and m->get_health() > 0) {
+		if (h->get_health() <= 0 or m->get_health() <= 0) break;
+
+		// Moves for PC
+		print_moves(h);
+		make_move(h, m);
+		sleep(2);
+
+		//Boss attack time
+		size_t attack = rand() % 3;
+		h->set_health(h->get_health() - attack);
+		cout << m->get_name() << " hit you, dealing " << attack << " damage" << endl;
+		sleep(2);
+		if (h->get_health() <= 0 or m->get_health() <= 0) break;
+
+		//Draw screen
+		draw_bar();
+		m->print_stats();		
+		cout << m->get_emoji() << endl;
+		cout << endl;
+		cout << h->get_emoji() << endl;		
+		h->print_stats();		
+		draw_bar();
+
+	}
+	if (h->get_health() <= 0) {
+		cout << "you lost" << endl; 
+		sleep(2);
+		print_ending(0);
+	}
+	else if (m->get_health() <= 0) {
+		cout << m->get_name() << " defeated!" << endl;
+		sleep(2);
+		//print_ending(1);
+	}
+	return 1;
 }
