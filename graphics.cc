@@ -1,11 +1,10 @@
 #include "graphics.h"
 static const size_t XDISPLAY = 21; //Show a 20x20 area at a time
 static const size_t YDISPLAY = 17; //Show a 20x20 area at a time
-
 void print_title(string title) {
 	system("clear");
 	system("figlet -f slant 'Welcome to hell' | lolcat");
-	sleep(1);
+	cout << endl;
 }
 void print_ending(int ending) {
 	system("clear");
@@ -23,7 +22,6 @@ void print_ending(int ending) {
 	}
 	exit(1);
 }
-//Draws the inventory of a given player at a given point.
 void draw_cube() {
 	setbgcolor(1, 11, 17);
 	setcolor(51, 51, 51);
@@ -36,37 +34,14 @@ void draw_bar() {
 	for (int i = 0; i <= XDISPLAY; i++) { cout << "🟫"; }
 	cout << RESET << endl;
 }
-void draw_inventory(shared_ptr<Actor> h, const int XDISPLAY) {
-	draw_bar();
-	cout << "Position X: " << h->p->x << "\tY: " << h->p->y << endl; 
-	if (static_pointer_cast<Hero>(h)->get_health() > 0)  {
-		static_pointer_cast<Hero>(h)->print_health();
-	}
-	if (static_pointer_cast<Hero>(h)->get_health() > 0) {
-		static_pointer_cast<Hero>(h)->print_shield();
-	}
-	if (static_pointer_cast<Hero>(h)->num_keys > 0) { 
-		static_pointer_cast<Hero>(h)->print_keys(); 
-	}
-	if (static_pointer_cast<Hero>(h)->num_potions > 0) { 
-		static_pointer_cast<Hero>(h)->print_potions(); 
-	}
-	if (static_pointer_cast<Hero>(h)->num_cheese > 0) { 
-		static_pointer_cast<Hero>(h)->print_cheese(); 
-	}
-	draw_bar();
-}
-
-void draw_game_map(shared_ptr<Actor>& h) {
-	system("clear"); 
-	//cls();
+void draw_game_map(shared_ptr<Hero>& h) {
+	system("clear"); //cls(); //TODO?
 	draw_bar();
 
 	int start_x = h->p->x - XDISPLAY/2;
 	int end_x = h->p->x + XDISPLAY/2;
 	int start_y = h->p->y - YDISPLAY/2;
 	int end_y = h->p->y + YDISPLAY/2;
-
 
 	//Bounds check to handle the edges
 	if (start_x < 0) {
@@ -317,7 +292,11 @@ void draw_game_map(shared_ptr<Actor>& h) {
 		cout << endl;
 
 	}
-	draw_inventory(h, XDISPLAY);
+	//draw_inventory(h, XDISPLAY);
+	draw_bar();
+	cout << "Position X: " << h->p->x << "\tY: " << h->p->y << endl; 
+	h->print_stats();
+	draw_bar();
 }
 void cls() {
 	cout << "\033[2J\033[1;1H";
