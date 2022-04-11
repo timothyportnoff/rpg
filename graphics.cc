@@ -34,7 +34,8 @@ void draw_bar() {
 	for (int i = 0; i <= XDISPLAY; i++) { cout << "🟫"; }
 	cout << RESET << endl;
 }
-void draw_game_map(shared_ptr<Hero>& h) {
+void draw_game_map(vector <shared_ptr<Actor>>& cast) {
+	shared_ptr<Hero> h = static_pointer_cast<Hero> (cast.at(0));
 	system("clear"); //cls(); //TODO?
 	draw_bar();
 
