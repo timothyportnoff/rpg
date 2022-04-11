@@ -17,8 +17,10 @@ class Entity {
 		Point* p;
 		string get_class_type() const;
 		void set_class_type(string class_type);
+
 		string get_type() const;
 		void set_type(string type);
+
 		string get_emoji() const;
 		void set_emoji(string emoji);
 		string get_name() const;
@@ -30,6 +32,7 @@ class Entity {
 		int get_g() const;
 		void set_b(int b);
 		int get_b() const;
+
 		void print_stats() const;
 };
 
@@ -61,9 +64,11 @@ class Actor : public Entity {
 		Actor (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		int get_health() const;
 		void set_health(int);
+		void add_health(int);
 		
 		int get_shield() const;
 		void set_shield(int);
+		void add_shield(int);
 		
 		int get_damage() const;
 		void set_damage(int);
@@ -104,19 +109,19 @@ class Hero : public Actor {
 
 		int get_keys() const;
 		void set_keys();
-		void add_keys();
+		void add_keys(int n);
 
 		int get_cheese() const;
-		void set_cheese();
-		void add_cheese();
+		void set_cheese(int cheese);
+		void add_cheese(int n);
 		
 		int get_potions() const;
-		void set_potions();
-		void add_potions();
+		void set_potions(int potions);
+		void add_potions(int n);
 
 		int get_coins() const;
-		void set_coins();
-		void add_coins();
+		void set_coins(int coins);
+		void add_coins(int n);
 
 		void print_keys () const;
 		void print_cheese () const;

@@ -53,16 +53,24 @@ A::Actor (string class_type, string name, string type, int x, int y, string emoj
 }
 int A::get_health() const { return health; }
 void A::set_health(int health) { this->health = health; }
+void A::add_health(int n) { health += n; }
+
 int A::get_shield() const { return shield; }
 void A::set_shield(int shield) { this->shield = shield; }
+void A::add_shield(int n) { shield += n; }
+
 int A::get_damage() const {return damage; }
 void A::set_damage(int damage) { this->damage = damage; }
+
 int A::get_resistance() const { return resistance; }
 void A::set_resistance(int resistance) { this->resistance = resistance; }
+
 int A::get_level() const { return level; }
 void A::set_level(int level) { this->level = level; }
+
 int A::get_speed() const { return speed; }
 void A::set_speed(int speed) { this->speed = speed; }
+
 void A::print_health_bar() const {
 	string health_bar;
 	for (int j = 0; j <= health; j++) health_bar += "🖤";
@@ -128,9 +136,17 @@ H::Hero (string class_type, string name, string type, int x, int y, string emoji
 	this->level = level;
 };
 int H::get_cheese() const { return num_cheese; }
-int H::get_keys() const { return num_cheese; }
-int H::get_potions() const { return num_cheese; }
+void H::add_cheese(int n) { num_cheese += n; }
+
+int H::get_keys() const { return num_keys; }
+void H::add_keys(int n) { num_keys += n; }
+
+int H::get_potions() const { return num_potions; }
+void H::add_potions(int n) { num_potions += n; }
+
 int H::get_coins() const { return num_cheese; }
+void H::add_coins(int n) { num_coins += n; }
+
 void H::print_keys() const {
 	if (num_keys > 0) {
 		cout << "K: ";
