@@ -3,11 +3,12 @@
 #include "graphics.h"
 //#include "tileset.cc"
 #include <vector>
-#include <vector>
 #include <unistd.h>
 #include <algorithm>
 
 using namespace std;
+
+//vector<shared_ptr<Actor>> cast;
 
 void combatGameAttack(int &bossHealth) {
 	int attackDamage = rand() % 20 + 20;
@@ -26,11 +27,19 @@ void youMessedUp(string moveChoice) {
 		cout << "ERROR" << endl;
 	}
 }
-void initiate_combat(int x = 0, int y = 0) {
+extern vector<shared_ptr<Actor>> cast;
+int initiate_combat(shared_ptr<Actor>& h, int direction) { //Returns false if you cannot pass, returns 1 if the block is pass-able. Checks value on other side of block
 	system("clear");
 	int userHealth = 100, bossHealth = 200;
 	string moveChoice;
 	cout << "Hello! Welcome to the final boss!\n";
+	cout << "Searching for boss...\n";
+	//file << cast.at(i)->get_class_type() << " ";
+	//static_pointer_cast<Hero>(h)->print_keys(); 
+	//shared_ptr<Monster> m = static_pointer_cast<Monster>(cast.at(3));
+	shared_ptr<Monster> m = static_pointer_cast<Monster> (cast.at(0)); 
+	//cout << cast.at(2)->get_name() << endl;
+	cout << "Success!\n";
 	while (userHealth > 0 or bossHealth > 0) {
 		if (userHealth <= 0 or bossHealth <= 0) break;
 		//cout << "Your Health: " << userHealth << " " << healthBar(userHealth) << endl;
@@ -45,4 +54,5 @@ void initiate_combat(int x = 0, int y = 0) {
 	}
 	if (userHealth <= 0) print_ending(0);
 	if (bossHealth <= 0) print_ending(1);
+	return 0;
 }

@@ -17,9 +17,7 @@ bool solved6;
 unsigned int i = 0;
 unsigned int j = 0;
 
-void initiate_combat(int x, int y);
-//vector
-//void load_game_map() {} //TODO
+int initiate_combat(shared_ptr<Actor>& h, int direction);
 vector<string> game_map = {
 	".............................................................................................................................................................................................",
 	".............................................................................................................................................................................................",
@@ -57,7 +55,7 @@ vector<string> game_map = {
 	"..............................................................................................#   #.........#   ## #######L################################   ######.........................",
 	"...........................................................................................#### ###...####### # b   #...#   #.............................#   #..............................",
 	"...........................................................................................#   K#.....# b    b ######...#   #.............................#   #..............................",
-	"...........................................................................................#b   #######b b b     #......#   #.............................#   #..............................",
+	"...........................................................................................#b   #######b b b     #......#   #.............................# E #..............................",
 	".................................................................#######........#########..####    P    ######GLG#.....##   ##............................#f f#..............................",
 	".................................................................#     #...####.#    aab#.....###########....#  b#....## P   ##............................###...............................",
 	".................................................................#   b #####ba###      b#....................##C##...##   A   ##.............................................................",
@@ -130,11 +128,9 @@ vector<string> game_map = {
 	".............................................................................................................................................................................................",
 	".............................................................................................................................................................................................",
 };
-
-//bool checkTile(Point* current_position, int nextx, int nexty) { // 
+//void load_game_map() {} //TODO
 enum direction {UP, DOWN, LEFT, RIGHT};
-bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
-	//bool checkTile(dynamic_pointer_cast<Hero>(h), int direction) { //Returns 0 if the block is solid, returns 1 if the block is not solid. Checks value on other side of block
+bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns false if you cannot pass, returns 1 if the block is pass-able. Checks value on other side of block
 	Point* current_position = {};
 	int nextx = h->p->x;
 	int nexty = h->p->y;
@@ -144,12 +140,8 @@ bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns 0 if the block i
 	if (direction == LEFT) { nextx--; }
 	if (direction == RIGHT) { nextx++; }
 
-	//int diffx = current_position->x - nextx;
-	//int diffy = current_position->y - nexty;
 	int diffx = h->p->x - nextx;
 	int diffy = h->p->y - nexty;
-	//int x = current_position->x;
-	//int y = current_position->y;
 	int x = h->p->x;
 	int y = h->p->y;
 
@@ -329,9 +321,7 @@ bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns 0 if the block i
 		} else return 0;
 	}
 	else if (game_map.at(nexty).at(nextx) == 'E') {
-		//initiate_combat();
-		initiate_combat(x, y);
-		return 0;
+		return initiate_combat (h, direction); //Enters combat with a character, and the tile he's pointing at.
 	}
 	//DIALOGUE
 	else if (game_map.at(nexty).at(nextx) == 'Z') {

@@ -80,6 +80,20 @@ H::Hero(Point* p) {
 	this->p = p;
 };
 
+M::Monster (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
+	set_class_type(class_type);
+	set_name(name);
+	set_type(type);
+	Point* temp = new Point{x, y};
+	this->p = temp;
+	//delete temp;
+	set_emoji(emoji);
+	this->health = health;
+	this->shield = shield;
+	this->damage = damage;
+	this->resistance = resistance;
+	this->level = level;
+};
 H::Hero (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level) {
 	set_class_type(class_type);
 	set_name(name);

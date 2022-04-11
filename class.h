@@ -67,6 +67,7 @@ class Monster : public Actor {
 		//using Actor::Actor;
 		//Monster() override;
 		Monster();
+		Monster (string class_type, string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 		//Monster (string name, string type, int x, int y, string emoji, int health, int shield, int damage, int resistence, int level);
 
 };

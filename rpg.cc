@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <algorithm>
 #include <memory>
+#include <locale>
 // Kerney headers
 #include "/public/colors.h"
 #include "/public/read.h"
@@ -25,7 +26,7 @@ using namespace bridges;
 
 void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 	ifstream in(filename);
-	if (!in) cerr << "Uh oh no file found" << endl;
+	if (!in) cerr << "Uh oh, no file found" << endl;
 	while (in) {
 		string class_type;
 		in >> class_type;
@@ -62,7 +63,7 @@ void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 		in >> level;
 
 		if (class_type == "hero") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
-		else if (class_type == "monster") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
+		else if (class_type == "monster") cast.push_back(make_shared<Monster> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
 /*
@@ -73,12 +74,12 @@ CircDLelement<Actor> *insertFront(
 
 void load_game_map() {}
 
+
 int main() {
 	set_raw_mode(true);
 	show_cursor(false);
 	//set_alternate_window(true);
 	srand(time(0));
-	vector<shared_ptr<Actor>> cast;
 
 	print_title("RPG - 41");
 	cout << endl;
@@ -86,11 +87,12 @@ int main() {
 	cout << "Load game (2);" << endl;
 	int choice;
 	cin >> choice;
+	vector<shared_ptr<Actor>> cast;
 	if (choice == 2) load_actors(cast, "save_actors.txt");
 	else load_actors(cast, "actors.txt");
 
-	shared_ptr<Actor> cat = cast.at(0); 
-	draw_game_map(cat);
+	shared_ptr<Actor> h = cast.at(0); 
+	draw_game_map(h);
 /*
 	Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
 	bridges->setTitle("Attack Turn:");
@@ -150,28 +152,28 @@ int main() {
 		int dir = quick_read();
 		
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
-			if (checkTile(cat, UP)) {
-				cat->p->y--;
-				draw_game_map(cat);
+			if (checkTile(h, UP)) {
+				h->p->y--;
+				draw_game_map(h);
 
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
-			if (checkTile(cat, DOWN)) {
-				cat->p->y++;
-				draw_game_map(cat);
+			if (checkTile(h, DOWN)) {
+				h->p->y++;
+				draw_game_map(h);
 			}
 		}
 		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
-			if (checkTile(cat, LEFT)) {
-				cat->p->x--;
-				draw_game_map(cat);
+			if (checkTile(h, LEFT)) {
+				h->p->x--;
+				draw_game_map(h);
 			}
 		}
 		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
-			if (checkTile(cat, RIGHT)) {
-				cat->p->x++;
-				draw_game_map(cat);
+			if (checkTile(h, RIGHT)) {
+				h->p->x++;
+				draw_game_map(h);
 			}
 		}
 		if (dir == 'f') {
@@ -181,7 +183,7 @@ int main() {
 			cout << "Thank you for paying respects.";
 		}
 		if (dir == 'p') {
-			initiate_combat();
+			//initiate_combat(h, direction);
 		}
 		if (dir == ESC) {
 			system("clear");
