@@ -2,12 +2,12 @@
 
 ##A tui dungeon, tileset style!
 
-##Featured implementations:
-- "Fog of war" world map that uses emojis instead of basic characters!
-- Collision detection - detects when you walk into a wall, item, door, enemy, etc.
-- Inventory sytem that uses potions, keys, and cheese.
-- Uses the legendary colors.h by ShakaUVM (#include "/public/colors.h")
-- Inventory system for all Heroes
+##A quick overview of some cool stuff:
+- "Fog of war" world map that uses emojis instead of basic characters! 😏
+- Collision detection - detects when you walk into a wall, item, door, enemy, etc 🚫
+- Inventory sytem that shows coordinates, health, armor, and inventory items 🧀
+- Loads Heroes and Monsters at start, and saves them upon exit 💾
+- Based upon the legendary colors.h by ShakaUVM (#include "/public/colors.h") 👾
 
 ##TODO:
 - Make tileset class for map
