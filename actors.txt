@@ -1,5 +1,7 @@
-hero cat pc 104 25 🤠 5 5 5 10 10
-hero dog paladin 50 50 🦎 6 6 8 41 4
-monster kerney boss 1 1 👽 10 9 40 40 40
-monster mencarelli goblin 2 3 🐎 4 77 50 30 20
-monster betancourt wolf 4 4 🐕 7 88 80 90 11
+hero Cat rogue 104 25 🤠 6 5 5 10 10
+hero Dog paladin 50 50 🦎 7 6 8 41 4
+monster Mencarelli goblin 110 24 🐎 4 14 10 9 13
+monster Connor man-eating-tree 138 28 🌳 8 1 10 9 13
+monster Betancourt zombie 141 20 🐕 7 3 80 90 11
+monster Aaron cyclops 156 36 🐕 8 1 40 0 10
+monster Kerney centaur 161 32 👽 66 20 40 40 40
