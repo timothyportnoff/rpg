@@ -99,12 +99,13 @@ int main() {
 	int actorCount = 0;
 	for (const shared_ptr<Actor> &k : cast) actorCount++;
 	CircDLelement<shared_ptr<Actor>> actorOrder;
+	/*
 	for (const shared_ptr<Actor> &a : cast) {
 		////not sorted by hero/monster, it's sorted by speed. However, it still needs to be classified as a hero/monster.
 		if (a->get_type() == "hero") new CircDLelement<shared_ptr<Actor>> Hero(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
 		if (a->get_type() == "monster") new CircDLelement<shared_ptr<Actor>> Monster(get_type(), get_name(), get_health(), get_shield(), get_damage(), get_resistance(), get_level(), get_speed());
 	}
-/*
+
 	CircDLelement<shared_ptr<Actor> *head =  nullptr;
     		for (int i = 0; i < actorCount; i++) {
         	if (i) head = insertFront(head, Actor[i]);
