@@ -57,7 +57,7 @@ void draw_inventory(shared_ptr<Actor> h, const int XDISPLAY) {
 	draw_bar();
 }
 
-void draw_map(shared_ptr<Actor>& h) {
+void draw_game_map(shared_ptr<Actor>& h) {
 	system("clear"); 
 	//cls();
 	draw_bar();
@@ -73,17 +73,17 @@ void draw_map(shared_ptr<Actor>& h) {
 		start_x = 0;
 		end_x = start_x + XDISPLAY;
 	}
-	if (end_x > map.at(0).size()) {
-		start_x = start_x - (end_x - (map.size()));
-		end_x = map.size();
+	if (end_x > game_map.at(0).size()) {
+		start_x = start_x - (end_x - (game_map.size()));
+		end_x = game_map.size();
 	}
 	if (start_y < 0) {
 		end_y = end_y - start_y;
 		start_y = 0;
 	}
-	if (end_y > map.size()) {
-		start_y = start_y - (end_y - (map.at(0).size()));
-		end_y = map.at(0).size();
+	if (end_y > game_map.size()) {
+		start_y = start_y - (end_y - (game_map.at(0).size()));
+		end_y = game_map.at(0).size();
 	}
 
 	for (size_t row = start_y; row <= end_y; row++) {
@@ -96,55 +96,55 @@ void draw_map(shared_ptr<Actor>& h) {
 				cout << "🟫" << RESET;
 			}
 
-			//Places player over value at map
+			//Places player over value at game_map
 			if (row == h->p->y && col == h->p->x) {
 				setcolor(205,133,63);
 				cout << "🧔" << RESET;
 			}
 
 			//UNINTERACTABLES
-			else if (map.at(row).at(col) == '#') {
+			else if (game_map.at(row).at(col) == '#') {
 				//setbgcolor(1, 11, 17);
 				setbgcolor(16, 128, 114);
 				setcolor(51, 51, 51);
 				//setcolor(72, 191, 146);
 				cout << "🟥" << RESET;
-			} else if (map.at(row).at(col) == 'a') {
+			} else if (game_map.at(row).at(col) == 'a') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "🏮";
-			} else if (map.at(row).at(col) == '.') {
+			} else if (game_map.at(row).at(col) == '.') {
 				setbgcolor(1, 11, 17);
 				setcolor(238, 130, 238); //Violet fg
 				cout << "  ";
-			} else if (map.at(row).at(col) == ' ') {
-				setcolor(60, 60, 60);
+			} else if (game_map.at(row).at(col) == ' ') {
+				setcolor(20, 23, 24);
 				cout <<  "🟥" << RESET;
 				//cout << "  ";
 			}
 
 			//Interactables
-			else if (map.at(row).at(col) == 'p') {
+			else if (game_map.at(row).at(col) == 'p') {
 				setcolor(238, 130, 238); //Violet fg
 				cout << "🙋";
-			} else if (map.at(row).at(col) == 'w') {
+			} else if (game_map.at(row).at(col) == 'w') {
 				setcolor(218, 165, 32); //Gold fg
 				cout << "🏆";
-			} else if (map.at(row).at(col) == 'K') {
+			} else if (game_map.at(row).at(col) == 'K') {
 				setcolor(218, 165, 32); //Gold fg
 				cout << "🔑";
-			} else if (map.at(row).at(col) == 'P') {
+			} else if (game_map.at(row).at(col) == 'P') {
 				setcolor(139, 0, 139); //Dark magenta fg
 				cout << "🧂";
-			} else if (map.at(row).at(col) == 'C') {
+			} else if (game_map.at(row).at(col) == 'C') {
 				setcolor(255, 140, 0); //Dark orange fg
 				cout << "🧀";
-			} else if (map.at(row).at(col) == 'f') {
+			} else if (game_map.at(row).at(col) == 'f') {
 				setcolor(180, 53, 1); 
 				cout << "🔥"; // FIRE
-			} else if (map.at(row).at(col) == 'L') {
+			} else if (game_map.at(row).at(col) == 'L') {
 				setcolor(218, 165, 32); //Gold fg
 				cout << "🔒";
-			} else if (map.at(row).at(col) == 'E') { // ENEMY
+			} else if (game_map.at(row).at(col) == 'E') { // ENEMY
 				setcolor(180, 53, 1); 
 				cout << "👹";
 			}
@@ -152,82 +152,82 @@ void draw_map(shared_ptr<Actor>& h) {
 			//Puzzles (pressure plates, boxes, switches and gates)
 
 			//Switch
-			else if (map.at(row).at(col) == 's') {
+			else if (game_map.at(row).at(col) == 's') {
 				setcolor(255, 0, 255); //Magenta
 				cout << "📍";
-			} else if (map.at(row).at(col) == 'S') {
+			} else if (game_map.at(row).at(col) == 'S') {
 				setcolor(30, 144, 255); //Dodger blue
 				cout << "📍";
 			}
 
 			//Gate
-			else if (map.at(row).at(col) == 'G') { //Open gate
+			else if (game_map.at(row).at(col) == 'G') { //Open gate
 				setcolor(105, 105, 105);
 				cout << "❌";
-			} else if (map.at(row).at(col) == 'g') { //Open Gate
+			} else if (game_map.at(row).at(col) == 'g') { //Open Gate
 				setcolor(105, 105, 105);
 				cout << "  ";
 			}
 
 			//Box puzzles
-			else if (map.at(row).at(col) == 'b') {
+			else if (game_map.at(row).at(col) == 'b') {
 				setcolor(160, 82, 45);
 				//setcolor(255, 140, 0); //Dark orange fg
 				cout << "📦";
 			}
 
 			//UP Pressure plates 1-5
-			else if (map.at(row).at(col) == '1') {
+			else if (game_map.at(row).at(col) == '1') {
 				solved1 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
-			} else if (map.at(row).at(col) == '2') {
+			} else if (game_map.at(row).at(col) == '2') {
 				solved2 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
-			} else if (map.at(row).at(col) == '3') {
+			} else if (game_map.at(row).at(col) == '3') {
 				solved3 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
-			} else if (map.at(row).at(col) == '4') {
+			} else if (game_map.at(row).at(col) == '4') {
 				solved4 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
-			} else if (map.at(row).at(col) == '5') {
+			} else if (game_map.at(row).at(col) == '5') {
 				solved5 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
-			} else if (map.at(row).at(col) == 'q') {
+			} else if (game_map.at(row).at(col) == 'q') {
 				//solved5 = 0;
 				setcolor(0, 128, 0); //Green fg
 				cout << "💢";
 			}
 
 			//DOWN Pressure plates 1-5 (6-0)
-			else if (map.at(row).at(col) == '6') {
+			else if (game_map.at(row).at(col) == '6') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
-			} else if (map.at(row).at(col) == '7') {
+			} else if (game_map.at(row).at(col) == '7') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
-			} else if (map.at(row).at(col) == '8') {
+			} else if (game_map.at(row).at(col) == '8') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
-			} else if (map.at(row).at(col) == '9') {
+			} else if (game_map.at(row).at(col) == '9') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
-			} else if (map.at(row).at(col) == '0') {
+			} else if (game_map.at(row).at(col) == '0') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
-			} else if (map.at(row).at(col) == 'Q') {
+			} else if (game_map.at(row).at(col) == 'Q') {
 				setcolor(139, 69, 19); //Saddle brown fg
 				cout << "📦" << RESET;
 			}
 
 			//Puzzle Gates FIXME: Should these be else?
-			else if (map.at(row).at(col) == '!') {
+			else if (game_map.at(row).at(col) == '!') {
 				if (solved1 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥";
 				}
 				else {
@@ -236,9 +236,9 @@ void draw_map(shared_ptr<Actor>& h) {
 				}
 			}
 
-			else if (map.at(row).at(col) == '?') {
+			else if (game_map.at(row).at(col) == '?') {
 				if (solved2 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥" << RESET;
 				}
 
@@ -248,9 +248,9 @@ void draw_map(shared_ptr<Actor>& h) {
 				}
 			}
 
-			else if (map.at(row).at(col) == '^') {
+			else if (game_map.at(row).at(col) == '^') {
 				if (solved3 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥" << RESET;
 				}
 
@@ -260,9 +260,9 @@ void draw_map(shared_ptr<Actor>& h) {
 				}
 			}
 
-			else if (map.at(row).at(col) == '&') {
+			else if (game_map.at(row).at(col) == '&') {
 				if (solved4 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥" << RESET;
 				}
 
@@ -270,9 +270,9 @@ void draw_map(shared_ptr<Actor>& h) {
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
-			} if (map.at(row).at(col) == '%') {
+			} if (game_map.at(row).at(col) == '%') {
 				if (solved5 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥" << RESET;
 				}
 
@@ -280,14 +280,14 @@ void draw_map(shared_ptr<Actor>& h) {
 					setcolor(107, 142, 35); //Olive drab
 					cout << "🔒" << RESET;
 				}
-			} else if (map.at(row).at(col) == '$') {
+			} else if (game_map.at(row).at(col) == '$') {
 				setcolor(107, 142, 35); //Olive drab
 				cout << "🔒" << RESET;
 			} 
 
-			else if (map.at(row).at(col) == '*') {
+			else if (game_map.at(row).at(col) == '*') {
 				if (solved6 == 1) {
-					map.at(row).at(col) = ' ';
+					game_map.at(row).at(col) = ' ';
 					cout << WHITE << "🟥" << RESET;
 				}
 
@@ -298,14 +298,14 @@ void draw_map(shared_ptr<Actor>& h) {
 			}
 
 			// Books
-			else if (map.at(row).at(col) == 'Z' || map.at(row).at(col) == 'z' || map.at(row).at(col) == 'Y' || map.at(row).at(col) == 'y'
-					|| map.at(row).at(col) == 'X' || map.at(row).at(col) == 'x' || map.at(row).at(col) == 'A' || map.at(row).at(col) == 'k'
-					|| map.at(row).at(col) == 'V' || map.at(row).at(col) == '~' || map.at(row).at(col) == 'e' || map.at(row).at(col) == 'k'
-					|| map.at(row).at(col) == 'J' || map.at(row).at(col) == 'h' || map.at(row).at(col) == 'H'
-					|| map.at(row).at(col) == 'o' || map.at(row).at(col) == 'O' || map.at(row).at(col) == 'r' || map.at(row).at(col) == 'R'
-					|| map.at(row).at(col) == 't' || map.at(row).at(col) == 'T' || map.at(row).at(col) == 'i' || map.at(row).at(col) == 'I'
-					|| map.at(row).at(col) == 'l' || map.at(row).at(col) == 'j' || map.at(row).at(col) == 'F' 
-					|| map.at(row).at(col) == 'y') {
+			else if (game_map.at(row).at(col) == 'Z' || game_map.at(row).at(col) == 'z' || game_map.at(row).at(col) == 'Y' || game_map.at(row).at(col) == 'y'
+					|| game_map.at(row).at(col) == 'X' || game_map.at(row).at(col) == 'x' || game_map.at(row).at(col) == 'A' || game_map.at(row).at(col) == 'k'
+					|| game_map.at(row).at(col) == 'V' || game_map.at(row).at(col) == '~' || game_map.at(row).at(col) == 'e' || game_map.at(row).at(col) == 'k'
+					|| game_map.at(row).at(col) == 'J' || game_map.at(row).at(col) == 'h' || game_map.at(row).at(col) == 'H'
+					|| game_map.at(row).at(col) == 'o' || game_map.at(row).at(col) == 'O' || game_map.at(row).at(col) == 'r' || game_map.at(row).at(col) == 'R'
+					|| game_map.at(row).at(col) == 't' || game_map.at(row).at(col) == 'T' || game_map.at(row).at(col) == 'i' || game_map.at(row).at(col) == 'I'
+					|| game_map.at(row).at(col) == 'l' || game_map.at(row).at(col) == 'j' || game_map.at(row).at(col) == 'F' 
+					|| game_map.at(row).at(col) == 'y') {
 				setcolor(0, 128, 0); //Green fg
 				cout << "📖" << RESET;
 			}

@@ -71,7 +71,7 @@ CircDLelement<Actor> *insertFront(
     CircDLelement<Actor> *newElement);
 */
 
-void load_map() {}
+void load_game_map() {}
 
 int main() {
 	set_raw_mode(true);
@@ -90,12 +90,11 @@ int main() {
 	else load_actors(cast, "actors.txt");
 
 	shared_ptr<Actor> cat = cast.at(0); 
-	draw_map(cat);
+	draw_game_map(cat);
 /*
 	Bridges *bridges =  new Bridges(10, "Skeletonman59", "1126298313308");//TODO: Tim, you gotta change this on your side
 	bridges->setTitle("Attack Turn:");
 */
-
 	sort(cast.begin(), cast.end(), [](const shared_ptr<Actor>& lhs, const shared_ptr<Actor>& rhs) { //feeling skeptical about using Actor&...
 			return lhs->get_speed() > rhs->get_speed();
    	});
@@ -116,19 +115,19 @@ int main() {
 			}
 */
 	while (true) {
-		for (size_t row = 0; row < map.size(); row++) {
+		for (size_t row = 0; row < game_map.size(); row++) {
 			char puzzle1 = '1';
 			char puzzle2 = '2';
 			char puzzle3 = '3';
 			char puzzle4 = '4';
 			char puzzle5 = '5';
 			char puzzle6 = '6';
-			auto found1 = map.at(row).find(puzzle1);
-			auto found2 = map.at(row).find(puzzle2);
-			auto found3 = map.at(row).find(puzzle3);
-			auto found4 = map.at(row).find(puzzle4);
-			auto found5 = map.at(row).find(puzzle5);
-			auto found6 = map.at(row).find(puzzle6);
+			auto found1 = game_map.at(row).find(puzzle1);
+			auto found2 = game_map.at(row).find(puzzle2);
+			auto found3 = game_map.at(row).find(puzzle3);
+			auto found4 = game_map.at(row).find(puzzle4);
+			auto found5 = game_map.at(row).find(puzzle5);
+			auto found6 = game_map.at(row).find(puzzle6);
 			if (found1 != string::npos) {
 				solved1 = 1;
 			}
@@ -153,32 +152,32 @@ int main() {
 		if (dir == 119 || dir == UP_ARROW || dir == 'k') {
 			if (checkTile(cat, UP)) {
 				cat->p->y--;
-				draw_map(cat);
+				draw_game_map(cat);
 
 			}
 		}
 		if (dir == 115 || dir == DOWN_ARROW || dir == 'j') {
 			if (checkTile(cat, DOWN)) {
 				cat->p->y++;
-				draw_map(cat);
+				draw_game_map(cat);
 			}
 		}
 		if (dir == 97 || dir == LEFT_ARROW || dir == 'h') {
 			if (checkTile(cat, LEFT)) {
 				cat->p->x--;
-				draw_map(cat);
+				draw_game_map(cat);
 			}
 		}
 		if (dir == 100 || dir == RIGHT_ARROW || dir == 'l') {
 			if (checkTile(cat, RIGHT)) {
 				cat->p->x++;
-				draw_map(cat);
+				draw_game_map(cat);
 			}
 		}
 		if (dir == 'f') {
-			movecursor(10, 2 * map.at(0).size());
+			movecursor(10, 2 * game_map.at(0).size());
 			cout << "You have paid respects.";
-			movecursor(11, 2 * map.at(0).size());
+			movecursor(11, 2 * game_map.at(0).size());
 			cout << "Thank you for paying respects.";
 		}
 		if (dir == 'p') {
@@ -207,7 +206,7 @@ int main() {
 			}
 			file.close();
 			cout << "Exiting..." << endl;
-			show_cursor(false);
+			show_cursor(true);
 			exit(1);
 		}
 	}

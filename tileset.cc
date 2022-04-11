@@ -19,8 +19,8 @@ unsigned int j = 0;
 
 void initiate_combat(int x, int y);
 //vector
-//void load_map() {} //TODO
-vector<string> map = {
+//void load_game_map() {} //TODO
+vector<string> game_map = {
 	".............................................................................................................................................................................................",
 	".............................................................................................................................................................................................",
 	".............................................................................................................................................................................................",
@@ -153,316 +153,316 @@ bool checkTile(shared_ptr<Actor>& h, int direction) { //Returns 0 if the block i
 	int x = h->p->x;
 	int y = h->p->y;
 
-	if (map.at(nexty).at(nextx) == '#' || map.at(nexty).at(nextx) == 'a' || map.at(nexty).at(nextx) == 'G') return 0;
-	else if (map.at(nexty).at(nextx) == '!' || map.at(nexty).at(nextx) == '?' || map.at(nexty).at(nextx) == '^' || map.at(nexty).at(nextx) == '&' || map.at(nexty).at(nextx) == '%') return 0;
+	if (game_map.at(nexty).at(nextx) == '#' || game_map.at(nexty).at(nextx) == 'a' || game_map.at(nexty).at(nextx) == 'G') return 0;
+	else if (game_map.at(nexty).at(nextx) == '!' || game_map.at(nexty).at(nextx) == '?' || game_map.at(nexty).at(nextx) == '^' || game_map.at(nexty).at(nextx) == '&' || game_map.at(nexty).at(nextx) == '%') return 0;
 
 	//Check for box
-	else if (map.at(nexty).at(nextx) == 'b') {
+	else if (game_map.at(nexty).at(nextx) == 'b') {
 		//Check for empty space
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			//map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			//game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
 
 		//Check for Pressure plate
-		if (map.at(nexty - diffy).at(nextx - diffx) == '1') {
-			map.at(nexty - diffy).at(nextx - diffx) = '6';
-			map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '1') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '6';
+			game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '2') {
-			map.at(nexty - diffy).at(nextx - diffx) = '7';
-			map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '2') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '7';
+			game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '3') {
-			map.at(nexty - diffy).at(nextx - diffx) = '8';
-			map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '3') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '8';
+			game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '4') {
-			map.at(nexty - diffy).at(nextx - diffx) = '9';
-			map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '4') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '9';
+			game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '5') {
-			map.at(nexty - diffy).at(nextx - diffx) = '0';
-			map.at(y).at(x) = ' ';
-			map.at(nexty).at(nextx) = ' ';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '5') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '0';
+			game_map.at(y).at(x) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			return 1;
 		}
 		else return 0;
 	}
 
 	//Check for DOWN Pressure plate
-	else if (map.at(nexty).at(nextx) == '6') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ' || map.at(nexty - diffy).at(nextx - diffx) == '6') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '1';
+	else if (game_map.at(nexty).at(nextx) == '6') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ' || game_map.at(nexty - diffy).at(nextx - diffx) == '6') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '1';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '1') {
-			map.at(nexty - diffy).at(nextx - diffx) = '6';
-			map.at(nexty).at(nextx) = '1';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '1') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '6';
+			game_map.at(nexty).at(nextx) = '1';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
 
-	else if (map.at(nexty).at(nextx) == '7') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '2';
+	else if (game_map.at(nexty).at(nextx) == '7') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '2';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '2') {
-			map.at(nexty - diffy).at(nextx - diffx) = '7';
-			map.at(nexty).at(nextx) = '2';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '2') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '7';
+			game_map.at(nexty).at(nextx) = '2';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
 
-	else if (map.at(nexty).at(nextx) == '8') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '2';
+	else if (game_map.at(nexty).at(nextx) == '8') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '2';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '3') {
-			map.at(nexty - diffy).at(nextx - diffx) = '8';
-			map.at(nexty).at(nextx) = '3';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '3') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '8';
+			game_map.at(nexty).at(nextx) = '3';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
 
-	else if (map.at(nexty).at(nextx) == '9') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '4';
+	else if (game_map.at(nexty).at(nextx) == '9') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '4';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '4') {
-			map.at(nexty - diffy).at(nextx - diffx) = '9';
-			map.at(nexty).at(nextx) = '4';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '4') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '9';
+			game_map.at(nexty).at(nextx) = '4';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
 
-	else if (map.at(nexty).at(nextx) == '0') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '5';
+	else if (game_map.at(nexty).at(nextx) == '0') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '5';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '5') {
-			map.at(nexty - diffy).at(nextx - diffx) = '0';
-			map.at(nexty).at(nextx) = '5';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '5') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '0';
+			game_map.at(nexty).at(nextx) = '5';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
 
-	else if (map.at(nexty).at(nextx) == '0') {
-		if (map.at(nexty - diffy).at(nextx - diffx) == ' ') {
-			map.at(nexty - diffy).at(nextx - diffx) = 'b';
-			map.at(nexty).at(nextx) = '5';
+	else if (game_map.at(nexty).at(nextx) == '0') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == ' ') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = 'b';
+			game_map.at(nexty).at(nextx) = '5';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == '5') {
-			map.at(nexty - diffy).at(nextx - diffx) = '0';
-			map.at(nexty).at(nextx) = '5';
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == '5') {
+			game_map.at(nexty - diffy).at(nextx - diffx) = '0';
+			game_map.at(nexty).at(nextx) = '5';
 			return 1;
 		}
-		if (map.at(nexty - diffy).at(nextx - diffx) == 'b') {
+		if (game_map.at(nexty - diffy).at(nextx - diffx) == 'b') {
 			return 0;
 		}
 	}
-	else if (map.at(nexty).at(nextx) == 'S') {
-		map.at(nexty).at(nextx) = 's';
-		draw_map(h);
+	else if (game_map.at(nexty).at(nextx) == 'S') {
+		game_map.at(nexty).at(nextx) = 's';
+		draw_game_map(h);
 		return 0;
 	}
-	else if (map.at(nexty).at(nextx) == 's') {
-		map.at(nexty).at(nextx) = 'S';
-		draw_map(h);
+	else if (game_map.at(nexty).at(nextx) == 's') {
+		game_map.at(nexty).at(nextx) = 'S';
+		draw_game_map(h);
 		return 0;
 	}
-	else if (map.at(nexty).at(nextx) == 'C') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'C') {
+		game_map.at(nexty).at(nextx) = ' ';
 		static_pointer_cast<Hero> (h)->num_cheese++;
 		return 1;
 	}
-	else if (map.at(nexty).at(nextx) == 'P') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'P') {
+		game_map.at(nexty).at(nextx) = ' ';
 		static_pointer_cast<Hero>(h)->num_potions++;
 		return 1;
 	}
-	else if (map.at(nexty).at(nextx) == 'K') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'K') {
+		game_map.at(nexty).at(nextx) = ' ';
 		static_pointer_cast<Hero>(h)->num_keys++;
 		return 1;
 	}
-	else if (map.at(nexty).at(nextx) == 'L') {
+	else if (game_map.at(nexty).at(nextx) == 'L') {
 		if (static_pointer_cast<Hero>(h)->num_keys > 0) {
-			map.at(nexty).at(nextx) = ' ';
+			game_map.at(nexty).at(nextx) = ' ';
 			static_pointer_cast<Hero>(h)->num_keys--;
 			return 1;
 		} else return 0;
 	}
-	else if (map.at(nexty).at(nextx) == 'E') {
+	else if (game_map.at(nexty).at(nextx) == 'E') {
 		//initiate_combat();
 		initiate_combat(x, y);
 		return 0;
 	}
 	//DIALOGUE
-	else if (map.at(nexty).at(nextx) == 'Z') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'Z') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "You wake up with a cough and a sore throat.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'z') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'z') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "You've never seen this place before. This room is cold and wet.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'Y') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'Y') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "In front of you is a large, petrified oak door. It has a rusted keyhole.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'y') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'y') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "The room is humid, and steamy. Where is the steam coming from?";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'X') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'X') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "As you make your way through the cobwebs, the tunnel darkens.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'x') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'x') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "Is there... light at the end of this tunnel?";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'e') {
-		map.at(nexty).at(nextx) = ' ';
-		movecursor(j, 2 * map.at(0).size());
+	else if (game_map.at(nexty).at(nextx) == 'e') {
+		game_map.at(nexty).at(nextx) = ' ';
+		movecursor(j, 2 * game_map.at(0).size());
 		cout << "You come into a room filled with heavy, unmoveable barrels and boxes.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'A') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'A') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "The torches are your only source of warmth in this empty dungeon. They warm your cold heart.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'v') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'v') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "These crates seem light enough. Maybe you can move them out of the way?";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'i') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'i') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "You see an old rusty key. Could this be used for something?";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'k') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'k') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "As you walk down the tunnel, you run your hand down the rugged, blue brick walls.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == '~') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == '~') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "You see a vial of mysterious liquid. Should you drink it?";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'l') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'l') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "You sneeze. The sneeze echoes through the corridor.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'h') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'h') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "As you walk down the tunnel, your footsteps become quieter.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'o') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'o') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "Bones litter the floor, and blood is splattered all over the walls.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'O') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'O') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "You see someone's skeleton. Someone has died here.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'r') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'r') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "As you walk down the corridor, your sense of smell and taste is returning!";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'R') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'R') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "The air tastes like salty coins, and a repungent odor of onions and cheese lingers in the air.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 't') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 't') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "As you turn the corner, you see a giant ogre at the end of the hallway!";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'T') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'T') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "His name is Carl. Carl burps and farts at the same. He is wielding a large club.";
 		return 1;
 	}
 
-	else if (map.at(nexty).at(nextx) == 'J') {
-		map.at(nexty).at(nextx) = ' ';
+	else if (game_map.at(nexty).at(nextx) == 'J') {
+		game_map.at(nexty).at(nextx) = ' ';
 		cout << "Due to a lack of time and brain power, anything past this hallway is probably broken.";
 		return 1;
 	}
