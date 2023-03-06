@@ -301,5 +301,6 @@ void draw_game_map(vector <shared_ptr<Actor>>& cast) {
 }
 void cls() {
 	cout << "\033[2J\033[1;1H";
+	system("clear");
 }
 
