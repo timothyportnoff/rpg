@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <map>
 // Rpg Headers
 #include "point.cc"
 using namespace std;
@@ -67,6 +68,7 @@ vector<string> map = {
 	"......................................................................",
 };
 
+map<int> entity_map() {}
 
 void drawMap(Point* p) {
 	system("clear");//Can use clearscreen();
