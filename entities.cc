@@ -68,7 +68,9 @@ vector<string> map = {
 	"......................................................................",
 };
 
-map<int> entity_map() {}
+map<pair<int, int>> entity_map() {
+	'1, 1'
+}
 
 void drawMap(Point* p) {
 	system("clear");//Can use clearscreen();

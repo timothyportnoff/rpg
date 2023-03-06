@@ -1,10 +1,13 @@
 C = g++
+CPPOPT = -Ofast
 CFLAGS = -g -w -Wall -Wextra -std=c++2a
 DEBUG = -fsanitize=addrress
+# -fsanitize=addrress = memory leaks
+# -Wextra = 
 LIBS = -lcurl -lncurses
 
-a.out: rpg.cc *.h *.cc
-	$(C) $(CFLAGS) rpg.cc $(LIBS)
+a.out: main.cc *.h *.cc
+	$(C) $(CPPOPT) $(CFLAGS) main.cc $(LIBS)
 
 clean:
 	rm -rf a.out core *.o
