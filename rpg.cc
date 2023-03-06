@@ -17,12 +17,12 @@
 #include "combat.cc"
 #include "class.h"
 //bridges stuff
-#include "Bridges.h"
-#include "CircDLelement.h"
+//#include "Bridges.h"
+//#include "CircDLelement.h"
 
 
 using namespace std;
-using namespace bridges;
+//using namespace bridges;
 
 void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 	ifstream in(filename);
@@ -66,9 +66,9 @@ void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 		else if (class_type == "monster") cast.push_back(make_shared<Monster> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
 	}
 }
-CircDLelement<Actor> *insertFront(
-		CircDLelement<Actor> *tailElement,
-		CircDLelement<Actor> *newElement);
+//CircDLelement<Actor> *insertFront(
+//		CircDLelement<Actor> *tailElement,
+//		CircDLelement<Actor> *newElement);
 
 void load_game_map() {}
 
