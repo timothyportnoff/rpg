@@ -41,6 +41,10 @@ To get started with the game, follow these steps:
 - Engage in battles with monsters and interact with heroes you encounter along the way.
 - Stay alive and see if you can solve all the puzzles!
 
+## Credit
+
+Antonio Lara (Skeletonman59) was my partner for this project. [You can find his GitHub here.](https://github.com/Skeletonman59)
+
 ## License
 
 This project is licensed under the [GNU General Public License (GPL)](https://www.gnu.org/licenses/gpl-3.0.en.html).
