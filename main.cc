@@ -23,38 +23,29 @@ void load_actors(vector<shared_ptr<Actor>>& cast, const string filename) {
 	ifstream in(filename);
 	if (!in) cerr << "Uh oh, no file found" << endl;
 	while (in) {
+		int x;
+		int y;
+		int health;
+		int shield;
+		int damage;
+		int resistance;
+		int level;
+		string emoji;
 		string class_type;
+		string name;
+		string type;
+
 		in >> class_type;
 		if (!in) break;
-
-		string name;
 		in >> name;
-
-		string type;
 		in >> type;
-
-		int x;
 		in >> x;
-
-		int y;
 		in >> y;
-
-		string emoji;
 		in >> emoji;
-
-		int health;
 		in >> health;
-
-		int shield;
 		in >> shield;
-
-		int damage;
 		in >> damage;
-
-		int resistance;
 		in >> resistance;
-
-		int level;
 		in >> level;
 
 		if (class_type == "hero") cast.push_back(make_shared<Hero> (class_type, name, type, x, y, emoji, health, shield, damage, resistance, level));
