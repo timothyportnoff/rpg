@@ -9,8 +9,8 @@
 #include <memory>
 #include <locale>
 // Kerney headers
-#include "/public/colors.h"
-#include "/public/read.h"
+//#include "/public/colors.h"
+//#include "/public/read.h"
 // RPG headers
 #include "tileset.cc"
 #include "graphics.cc"
